@@ -7,7 +7,13 @@
 
 ---
 
-## 1. State as of 2026-09-10
+## 0. Update — end of 2026-09-10: the draw order in §4 is complete
+
+**61/61 required artifacts · 45/45 visuals rendered (HTML and Mermaid snapshots) · 0 of 68 documents unillustrated.** Tiers 1–4 of §4 are done except the website, which still needs the founder's consent. Row-by-row status: [audit/COVERAGE.md](audit/COVERAGE.md). What the review changed, including errors in this file's own §2.5 (the blended CAC was $5,400 and did not follow from its inputs — now ~$4,200): [audit/CRITIC_LOG.md](audit/CRITIC_LOG.md). The §1 table and §4 draw order below are kept as the historical record of where the session started.
+
+**If you are resuming this run**, the open work is: (1) E1/E2 — the first measurement of CAMIR's own; (2) an independent critic pass on `narrative/` and `financials/`, since the recorded pass was not independent; (3) the website, only with consent.
+
+## 1. State as of the start of 2026-09-10
 
 **29 of 61 required artifacts · 30 files on disk · 0 visuals · all work committed and pushed to `main`.**
 
