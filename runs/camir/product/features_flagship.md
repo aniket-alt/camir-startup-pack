@@ -36,7 +36,7 @@ These decide whether the customer should proceed at all. They ship first, becaus
 ### F5 — Replay Corpus Builder
 **Mechanism.** Stratified sample of the customer's own logged requests by endpoint, length band and (once labels exist) difficulty stratum; content-hashed and pinned into every `frontier_run`, so a run is reproducible or explicitly is not.
 **Principle.** PR9.
-**Visible moment.** Marcus points it at a week of production logs and gets a corpus card: 12,400 requests, 6 endpoints, hash `c4f19a…`. Everything downstream cites that hash. This is what makes his answer *his traffic*, which is the only frontier Dana will accept.
+**Visible moment.** Marcus points it at a week of production logs and gets a corpus card: 8,000 requests, 6 endpoints, 4 length bands, hash `c4f19a…`. Everything downstream cites that hash. This is what makes his answer *his traffic*, which is the only frontier Dana will accept.
 
 ### F6 — Non-Nested Tier Report
 **Mechanism.** Extracts the request set where a smaller tier answered correctly and a larger tier did not — the phenomenon FrugalGPT documented [S3], and the reason an oracle ceiling can exceed the large model's own score.
@@ -62,7 +62,7 @@ These are why the deployment is still live in month three. All four of Ravi's re
 ### F9 — Shadow Mode
 **Mechanism.** The router computes and logs a full tier decision for every request while **all traffic still goes to the fixed-model baseline**. Produces a complete counterfactual `savings_ledger` and a per-endpoint quality projection with zero production risk. On by default for every new endpoint.
 **Principle.** PR9, PR4.
-**Visible moment.** Two weeks before any traffic moves, Ravi receives a per-endpoint shadow report: *"Had routing been enforced on your endpoint, 44% of requests would have gone to the 8B tier; projected quality delta −0.6 points against a tolerance of −2.0."* He is consulted, not informed — his stated gain G3.
+**Visible moment.** Two weeks before any traffic moves, Ravi receives a per-endpoint shadow report: *"Had routing been enforced on your endpoint, 77% of requests would have resolved at the 8B tier; projected quality delta −0.3 points against your declared tolerance of −0.5."* — the same shadow output as [journeys/beachhead.md](journeys/beachhead.md) Week 3 He is consulted, not informed — his stated gain G3.
 
 ### F10 — Unilateral Pin-to-Large
 **Mechanism.** A per-endpoint pin flag in the pin registry, read before any classification, effective on the next request with no restart, no deploy and no approval path. Settable by the endpoint's tolerance owner.
@@ -77,7 +77,7 @@ These are why the deployment is still live in month three. All four of Ravi's re
 ### F12 — Counterfactual Savings Ledger
 **Mechanism.** Per request, the cost the fixed-model baseline would have incurred against the cost actually incurred, priced on F3's axis, plus the quality delta. **The computation is in the open-source half and runs inside the customer's perimeter**, so the party claiming the saving and the party verifying it are different.
 **Principle.** PR9.
-**Visible moment.** Dana's slide: baseline $50,200/month, actual $31,400, quality delta −0.4 points at a declared tolerance of −2.0, signed by Marcus. `(assumption: illustrative; no CAMIR measurement exists [G2])` Her objection — *"the biller computes the counterfactual"* [S17] — dies on the word *open*.
+**Visible moment.** Dana's slide: baseline $50,100/month, actual $41,800 — a 16.6% saving, in line with the ~17.5%-of-spend derivation in [../financials/pricing.md](../financials/pricing.md) — quality delta −0.2 points against declared tolerances, **signed by the endpoints' tolerance owners, not by Marcus and not by CAMIR** (O3). `(assumption: illustrative; no CAMIR measurement exists [G2]; same figures as [journeys/day_in_life.md](journeys/day_in_life.md) 16:20)` Her objection — *"the biller computes the counterfactual"* [S17] — dies on the word *open*.
 
 ---
 
@@ -98,7 +98,7 @@ Note the position. The router is the object under measurement, not the product [
 ### F15 — Escalation-Rate Accounting
 **Mechanism.** Decomposes cascade cost into failed small attempt + gate cost + large answer, and reports the break-even escalation rate above which the cascade costs **more** than going straight to the large tier. This is PR1 made arithmetic, and it is the number FrugalGPT's 2023 hosted price ratios [S3] no longer supply for a compressed self-hosted spread [G2].
 **Principle.** PR1.
-**Visible moment.** A single line above the frontier: *"Break-even escalation rate 38%. Yours is 22%."* If yours exceeds break-even, CAMIR recommends the classifier route or no routing at all.
+**Visible moment.** A single line above the frontier: *"Break-even escalation rate 80% (small/large cost ratio 0.20). Yours is 23% — saving 58% of token-proportional GPU cost on this endpoint."* The break-even is `1 − r` ([../tech/whitepaper.md](../tech/whitepaper.md) §2.1, worked in [../tech/architecture/D05.md](../tech/architecture/D05.md)); the saving erodes long before it is reached If yours exceeds break-even, CAMIR recommends the classifier route or no routing at all.
 
 ### F16 — Classifier Route, reported as an ablation
 **Mechanism.** Prompt-feature model predicts the resolving tier; one dispatch, no wasted generation. **Its result is reported against the calibrated-confidence baseline (F14), never against a fixed model**, because beating a fixed model is table stakes and beating free confidence is the real bar [S8].
@@ -117,7 +117,7 @@ Note the position. The router is the object under measurement, not the product [
 ### F18 — Judge Harness with Published Inter-Judge Agreement
 **Mechanism.** Temperature 0 (test-retest above 95%, versus ~70% at temperature 1 [S34]); fixed answer position or averaged permutations (position bias produces ~40% GPT-4 inconsistency [S34]); verbosity control (~15% inflation [S34]); exact-match or programmatic verification wherever the task admits it; two or more judges with the agreement statistic computed and attached to the run. Judges agree with each other only ~76% of the time [S33].
 **Principle.** PR8.
-**Visible moment.** Every frontier chart carries *"inter-judge agreement 0.81 (n=12,400, 2 judges)"* in its header. A run without it renders with a **Not reproducible** badge. Wen's stated bar — *"if you don't publish judge agreement, your frontier is noise"* — is a rendering rule.
+**Visible moment.** Every frontier chart carries *"inter-judge agreement 0.79 (n=8,000, 2 judges)"* in its header. A run without it renders with a **Not reproducible** badge. Wen's stated bar — *"if you don't publish judge agreement, your frontier is noise"* — is a rendering rule.
 
 ### F19 — Drift Monitor and Recalibration Scheduler
 **Mechanism.** Watches escalation rate, classifier calibration error and per-endpoint measured quality against the `frontier_run` the active policy was set on; a pool-manifest change or a drift trigger schedules a re-run and produces a new dated frontier. Static policies decay silently — Marcus's March A/B test is two model upgrades stale.

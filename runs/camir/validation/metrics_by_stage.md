@@ -87,14 +87,14 @@
 | # | Metric | Threshold |
 |---|---|---|
 | 1 | **Net revenue retention** (M17) | > 110%, from endpoint expansion — not from traffic growth, which CAMIR deliberately does not price on |
-| 2 | **CAC payback** | ~2.2 months at a blended ~$5,400 CAC (18% of a $30,000 ACV) |
+| 2 | **CAC payback** | ~2.2 months at a blended ~$4,200 Y1–Y3 CAC (14% of a $30,000 ACV) and 75% gross margin |
 | 3 | **Gross margin** | Software-shaped, ≥ 75%. **The real test**, because per-deployment classifier training and policy work are services wearing a subscription's clothes (E14) |
 | 4 | **Churn at pool change** | < 20% annually |
 | 5 | **Frontier-runs published by third parties** | ≥ 3/yr — the publication loop is the only viral mechanism |
 
 ### Ignore at this stage
 
-**ARR growth rate in isolation** — CAMIR's ACV is fixed by design at $30,000 and expansion is endpoint-by-endpoint, so a growth rate says nothing about whether accounts are surviving pool changes. **Total inference spend under management** — the OpenRouter-shaped metric [S17], and adopting it would mean CAMIR benefits when the customer's bill grows, which is the incentive this whole pack is built against.
+**ARR growth rate in isolation** — ACV rises from $30,000 to ~$95,000 in [../financials/revenue_build.md](../financials/revenue_build.md), but through Product 2 attach and the customer's own spend compounding, so a growth rate says nothing about whether accounts are surviving pool changes. **Spend under management reported as value delivered** — Product 2 prices on it (revenue build M6), which makes it a legitimate billing basis and a misleading success metric: it rises when the customer's bill rises, including when CAMIR saved nothing. Report it beside the measured saving, never instead of it.
 
 ---
 

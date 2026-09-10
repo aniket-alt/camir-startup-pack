@@ -125,7 +125,7 @@ The conventional "obvious" channel for infrastructure software. The arithmetic r
 | **F** | System integrators | **59.8%** | — | — | Rejected; revisit above ~$100k ACV |
 | **G** | Outbound sales | 97.0% | ~$35,000 | never | Rejected |
 
-**Blended year-one CAC across the live channels (A, B, C, D): ~$5,400**, or **18% of ACV**, with payback around 2.2 months `(assumption: mix of 40% A, 30% B, 20% C, 10% D)`. That is a healthy figure, and it holds only because the two primary channels have no intermediary. **The moment an intermediary is added, this plan stops working** — which is the real content of this file.
+**Blended Y1–Y3 CAC across the live channels (A, B, C, D): ~$4,200**, or **14% of ACV**, with payback around 2.2 months at the steady-state 75% gross margin `(assumption: mix of 40% A, 30% B, 20% C, 10% D)`. The arithmetic: B, C and D contribute 0.3 × $8,300 + 0.2 × $3,000 + 0.1 × $6,000 = **$3,690** of marginal CAC; Stack A adds its ~$40,000 one-off build amortised over the ~29 customers it brings in across Y1–Y3 (40% of 73 new logos), ≈ $1,380 each, weighted 0.4 → **~$4,240**. **Year one alone is ~$11,700**, because the whole build lands on the ~2 customers Stack A brings in that year. *(An earlier version of this file stated $5,400, which does not follow from these inputs under any amortisation.)* That is a healthy figure, and it holds only because the two primary channels have no intermediary. **The moment an intermediary is added, this plan stops working** — which is the real content of this file.
 
 ---
 
@@ -139,6 +139,6 @@ The conventional "obvious" channel for infrastructure software. The arithmetic r
 
 ## Recommended next 3
 
-1. **Treat Stack A's partner acceptance as a gating dependency, not a task.** If the contribution is rejected, the blended CAC roughly doubles as weight shifts to Stack B, and the primary channel disappears. It belongs in [../financials/risk_matrix.md](../financials/risk_matrix.md) with a leading indicator.
+1. **Treat Stack A's partner acceptance as a gating dependency, not a task.** If the contribution is rejected, the blended CAC rises ~45–65% — from ~$4,200 to ~$6,000–7,000, depending on how Stack A's share redistributes — and the primary channel disappears. It belongs in [../financials/risk_matrix.md](../financials/risk_matrix.md) with a leading indicator.
 2. **Budget Stack B's GPU-hours as half R&D.** The publication is the research contribution and the acquisition channel simultaneously; costing it entirely to sales overstates CAC by roughly 2×.
 3. **Set the marketplace revisit trigger explicitly at ~25 customers or the first procurement-blocked deal**, so Stack E gets reconsidered on evidence rather than re-litigated every quarter.

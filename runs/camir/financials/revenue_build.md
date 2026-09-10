@@ -73,12 +73,12 @@ Units × conversion × price, per year. Year 1 = first year with a paid contract
 | # | Assumption | Value | Basis |
 |---|---|---|---|
 | R1 | Gross logo churn, Y1–Y4 | **15%/yr** | `(assumption: deliberately high. Switching cost is low — CAMIR is a proxy, change the base URL and you are out; A6 says so in the founder's own words)` |
-| R2 | Gross logo churn, Y5+ | **12%/yr** | `(assumption: modest improvement once a signed savings definition and an attribution history exist; not the 5% an established infra vendor would assume)` |
+| R2 | Gross logo churn, Y5+ | **15%/yr in the table; 12%/yr is an unbanked upside** | `(assumption: churn may improve once a signed savings definition and an attribution history exist, but A6 is untested, so the table below holds 15% in every year — Y5 churn 19 of 128, Y8 97 of 648 — and does not bank the improvement. At 12% from Y5, Y8 ending customers would be ~1,040 rather than 1,001)` |
 | R3 | Net revenue retention | **112–118% scenario range** | `(assumption: customer inference spend grows ~26%` [S24]`, savings rate per dollar compresses` [S29]`; cohort expansion, churn and Product 2 attach are not yet observed)` |
 | R4 | ACV Y1 | **$30,000** | [pricing.md](pricing.md) §The ACV arithmetic |
 | R5 | Reachable population, 2026 | **1,370**, growing 26%/yr | [../strategy/market_sizing.md](../strategy/market_sizing.md) |
 | R6 | Spend-pool widening on hybrid GA (Y5) | **×3.3 scenario** | hosted/self-hosted spend ratio, not a company-count estimate; [../strategy/market_sizing.md](../strategy/market_sizing.md) |
-| R7 | Blended CAC, Y1–Y3 | **~$5,400** (18% of ACV) | [../strategy/channel_plan.md](../strategy/channel_plan.md) blended across stacks A/B/C/D |
+| R7 | Blended CAC, Y1–Y3 | **~$4,200** (14% of ACV); year one alone ~$11,700 | [../strategy/channel_plan.md](../strategy/channel_plan.md) blended across stacks A/B/C/D, Stack A's ~$40k build amortised over Y1–Y3 |
 
 ### The table
 
@@ -102,7 +102,7 @@ The ACV column is the part a skeptic should attack, because it does more work th
 | Bend | ACV | Composition |
 |---|---|---|
 | Y1–Y3 | $30k → $35k | Product 1 only. Growth is the customer's own inference spend compounding at ~26% [S24], partly offset by a compressing savings rate [S29]. **Net +5–8%/yr, not +26%** |
-| Y4 | $45k | Product 2 attaches to ~35% of the base at ~$40k incremental `(assumption: attach rate untested)`. $35k × 1.06 + 0.35 × $23k ≈ $45k |
+| Y4 | $45k | Product 2 attaches to ~35% of the base at ~$23k incremental `(assumption: attach rate and price untested)`. $35k × 1.06 + 0.35 × $23k ≈ $45k |
 | Y5–Y6 | $50k → $62k | Product 2 attach rises to ~55%; hybrid customers carry larger pools and larger bills |
 | Y7–Y8 | $78k → $95k | Product 2 becomes the **primary** contract, priced at 2–3% of inference spend. A customer spending $3M/yr on inference at 2.5% is $75k, and hybrid customers cross that threshold routinely |
 
@@ -115,7 +115,7 @@ The ACV column is the part a skeptic should attack, because it does more work th
 | Bend | ARR moves | **Milestone that causes it** | How you know it happened | What happens if it does not |
 |---|---|---|---|---|
 | **0 → Y1** | $0 → $0.15M | **M1: a published, reproducible cost-quality frontier on a self-hosted model pool**, with judge-agreement statistics [S33][S34]. Nobody has published this [G2] | The artifact exists, is re-runnable by a third party, and Wen-class evaluators cite it | No evidence, no evaluations, no year one. This is the gating milestone for the entire build |
-| **Y1 → Y2** | $0.15M → $0.86M | **M2: the routing strategy is merged and enabled inside LiteLLM** [S22] | Merged upstream; install→enable telemetry exists; installs above the volume floor are counted | Blended CAC roughly doubles as weight shifts to Stack B, and the 23-new-logo step becomes ~12. **Y2 ARR halves.** This is a tracked third-party dependency, not a task — see [risk_matrix.md](risk_matrix.md) R5 |
+| **Y1 → Y2** | $0.15M → $0.86M | **M2: the routing strategy is merged and enabled inside LiteLLM** [S22] | Merged upstream; install→enable telemetry exists; installs above the volume floor are counted | Blended CAC rises from ~$4,200 to ~$6,000–7,000 as Stack A's 40% shifts to B, C and D, and the 23-new-logo step becomes ~12. **Y2 ARR halves.** This is a tracked third-party dependency, not a task — see [risk_matrix.md](risk_matrix.md) R7 |
 | **Y2 → Y3** | $0.86M → $2.38M | **M3: three enforced deployments with signed eligible-savings definitions and published before-and-afters** | Three signed one-page definitions; three customer-authored posts | Share-of-savings is unbillable without an agreed definition [S38][S39]; fall back to 5% of spend and lose the alignment story |
 | **Y3 → Y4** | $2.38M → $5.76M | **M4: Product 2 GA** — cache policy, quantisation tier and model-upgrade regression measured on the same frontier | ≥1 customer paying for a non-routing lever, and the repricing trigger in [pricing.md](pricing.md) exercised at least once | ARR tracks Product 1 only: ~$3.6M in Y4, ~$5M in Y5, and the curve asymptotes inside the $20M SAM. **The venture case ends here and the healthy-infrastructure-business case begins** |
 | **Y4 → Y5** | $5.76M → $10.95M | **M5: hybrid pool GA (A9)** — hosted API models admitted as a top tier, widening the reachable population ×3.3 | Reachable population re-derived from *total* inference spend, not self-hosted spend | Population stays ~3,450; 219 customers is 6.3% penetration rather than 1.9%, which is not credible. **$10M ARR is unreachable without M5** |
@@ -147,7 +147,7 @@ Ranked by evidence, not by size.
 | Scenario | Change | Y5 ARR | Y8 ARR |
 |---|---|---|---|
 | **Base** | as tabled | $10.9M | $95.1M |
-| **M2 fails** (LiteLLM contribution rejected) | New logos −45% in Y2–Y4, CAC ~$9,000 | **$6.2M** | **$54M** |
+| **M2 fails** (LiteLLM contribution rejected) | New logos −45% in Y2–Y4, CAC ~$6,000–7,000 | **$6.2M** | **$54M** |
 | **M4 fails** (no Product 2) | ACV frozen at ~$38k by Y5, flat thereafter | **$8.3M** | **$31M** — and the terminal number is capped by the SAM, not by execution |
 | **M5 fails** (no hybrid) | Population stays 3,450; growth caps at ~6% penetration | **$9.8M** | **$36M** |
 | **Savings rate comes in at 15%, not 25%** | ACV → $17.6k until the repricing trigger fires | **$6.4M** | $88M — **the repricing to spend-percentage largely absorbs it, which is the point of declaring it in advance** |

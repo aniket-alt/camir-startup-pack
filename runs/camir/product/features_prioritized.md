@@ -1,7 +1,7 @@
 # CAMIR — 50 Features in Priority Order
 
 **What this is** — the full feature superset, 50 rows in strict priority order across Now / Next / Later, each with its mechanism, the user value in a named persona's terms, its dependencies, effort and the principle it maps to.
-**Why it exists** — the natural build order for a router is proxy → classifier → dashboard, and that order puts the first quality regression in production before anyone can attribute it, which is how the GPT-5 routing rollout was publicly criticised [S21]. This list re-orders around a different question — *what can return a cheap negative, and what stops Ravi Menon killing the deployment* — and the ordering is the argument. It also holds the line that the classifier route (#22) ships **after** its own baseline (#13), which is the ordering [S8] forces.
+**Why it exists** — the natural build order for a router is proxy → classifier → dashboard, and that order puts the first quality regression in production before anyone can attribute it, which is how the GPT-5 routing rollout was publicly criticised [S21]. This list re-orders around a different question — *what can return a cheap negative, and what stops Ravi Menon killing the deployment* — and the ordering is the argument. It also holds the line that the classifier route (#22) ships **after** its own baseline (#12), which is the ordering [S8] forces.
 **How to read it** — the ordering is the content; read the **Depends on** column to check it is a real dependency graph and not a disguised calendar. A skeptic should attack the Now/Next boundary at #18/#19: everything above it must be defensible as "the first routed request cannot happen without this."
 **Depends on / feeds** — depends on [PRD.md](PRD.md) §3 and §5, [features_flagship.md](features_flagship.md), [../strategy/value_prop_canvas.md](../strategy/value_prop_canvas.md); feeds [journeys/](journeys/), [ux_spec.md](ux_spec.md) and the tech layer's build sequence.
 
@@ -26,12 +26,12 @@ Principles PR1–PR10: [PRD.md](PRD.md) §3. Personas P1–P6: [../strategy/pers
 | 9 | **Non-nested tier report** (F6) | The request set where a smaller tier was right and a larger wrong [S3] | P2/P3: evidence routing is assignment, not controlled degradation | 7 | S | PR10 |
 | 10 | **Frontier builder** | Models as points, routes as curves, in a cost-quality plane [S7] | P2: he sees the exchange rate and picks the point himself | 6,7 | M | PR9 |
 | 11 | **Ingress proxy** (F17) | OpenAI-compatible endpoint; change a base URL, keep the client | P1: one environment variable, one restart, one afternoon | 2 | M | PR9 |
-| 12 | **Cascade route** (F13) | Small tier first; gate resolves or escalates. Observes an attempt rather than predicting one, but still depends on calibrated confidence and judge-validity checks [S4] | P2: savings with a post-generation signal | 11,13 | M | PR1, PR2 |
-| 13 | **Confidence gate + calibration fit** (F14) | Calibrated uncertainty threshold (max softmax / margin / entropy) fitted on held-out labels; versioned object. Simple confidence routes as well as trained routers [S8] | P2: the escalation rule is inspectable, not a magic constant | 3,7 | M | PR2, PR3 |
-| 14 | **Escalation-rate accounting + break-even** (F15) | Cascade cost decomposed into failed small attempt + gate + large answer; reports the escalation rate above which cascade costs more than always-large | P2: PR1's arithmetic, which FrugalGPT's 2023 hosted ratios no longer supply [S3][G2] | 12,6 | S | PR1 |
+| 12 | **Confidence gate + calibration fit** (F14) | Calibrated uncertainty threshold (max softmax / margin / entropy) fitted on held-out labels; versioned object. Simple confidence routes as well as trained routers [S8] | P2: the escalation rule is inspectable, not a magic constant | 3,7 | M | PR2, PR3 |
+| 13 | **Cascade route** (F13) | Small tier first; gate resolves or escalates. Observes an attempt rather than predicting one, but still depends on calibrated confidence and judge-validity checks [S4] | P2: savings with a post-generation signal | 11,12 | M | PR1, PR2 |
+| 14 | **Escalation-rate accounting + break-even** (F15) | Cascade cost decomposed into failed small attempt + gate + large answer; reports the escalation rate above which cascade costs more than always-large | P2: PR1's arithmetic, which FrugalGPT's 2023 hosted ratios no longer supply [S3][G2] | 13,6 | S | PR1 |
 | 15 | **Per-endpoint tolerance policy** (F7) | Append-only versioned object keyed by endpoint, required non-null `owner`, declared drop versus the fixed-model baseline, and the `frontier_run` it was set against | **P5: his name, his number, no ticket.** Also P4's "who checked, in writing" as a schema constraint | 10 | M | PR4 |
-| 16 | **Trace stamper** (F8) | Route type, tiers attempted, confidence, escalation flag, policy version as span attributes on the **caller's own** trace | P5: a quality question answered in minutes inside his existing tracing tool | 12 | S | PR2, PR4 |
-| 17 | **Shadow mode** (F9) | Decisions computed and logged while all traffic still goes to the fixed-model baseline; full counterfactual, zero production risk; on by default for new endpoints | P5: consulted rather than informed. P1: defaults that cannot silently hurt her | 12,16 | M | PR9, PR4 |
+| 16 | **Trace stamper** (F8) | Route type, tiers attempted, confidence, escalation flag, policy version as span attributes on the **caller's own** trace | P5: a quality question answered in minutes inside his existing tracing tool | 13 | S | PR2, PR4 |
+| 17 | **Shadow mode** (F9) | Decisions computed and logged while all traffic still goes to the fixed-model baseline; full counterfactual, zero production risk; on by default for new endpoints | P5: consulted rather than informed. P1: defaults that cannot silently hurt her | 13,16 | M | PR9, PR4 |
 | 18 | **Pin-to-large registry** (F10) | Per-endpoint pin read before classification, effective next request, no restart, no approval path; pin state stamped on the trace | **P5: the veto becomes a setting he owns instead of an escalation he files** | 15,16 | S | PR4, PR2 |
 
 ---
@@ -41,14 +41,14 @@ Principles PR1–PR10: [PRD.md](PRD.md) §3. Personas P1–P6: [../strategy/pers
 | # | Feature | Mechanism | User value (persona) | Depends on | Effort | Principle |
 |---|---|---|---|---|---|---|
 | 19 | **Tolerance breach alert + auto-revert** (F11) | Continuous measured quality per endpoint against declared tolerance; crossing pages the owner and optionally reverts that endpoint to baseline | P1: her stated objection — finding out from a support ticket — answered in the product | 15,17 | M | PR4 |
-| 20 | **Counterfactual savings ledger** (F12) | Per request, baseline cost versus actual on the cost axis, plus quality delta. **Computation lives in the open half, inside the customer's perimeter** | P4: the party claiming the saving is not the party verifying it [S17] | 6,12,16 | M | PR9 |
+| 20 | **Counterfactual savings ledger** (F12) | Per request, baseline cost versus actual on the cost axis, plus quality delta. **Computation lives in the open half, inside the customer's perimeter** | P4: the party claiming the saving is not the party verifying it [S17] | 6,13,16 | M | PR9 |
 | 21 | **Signed savings report** | One page: baseline, cost at declared tolerance, quality delta, judge agreement, named signer | P4: the slide, and the name attached to "who checked" | 20,5 | S | PR9, PR4 |
-| 22 | **Classifier route (ablation)** (F16) | Prompt-feature model predicts the resolving tier; single dispatch, no wasted generation | P2/P3: the second strategy, honestly scoped. **Not shipped before #13** | 13,7 | L | PR3, PR5 |
-| 23 | **Ablation table** | Four rows on one axis: fixed-model baseline, calibrated confidence, trained classifier, oracle ceiling — with gap-to-oracle per row | P3: the only honest way to read a classifier result [S8]. If the classifier does not beat confidence, CAMIR reports it | 22,13,7 | S | PR3, PR5 |
-| 24 | **Drift monitor** (F19) | Watches escalation rate, calibration error and per-endpoint quality against the `frontier_run` the active policy cites | P2: his March A/B test is two model upgrades stale and nothing told him | 13,15 | M | PR5 |
+| 22 | **Classifier route (ablation)** (F16) | Prompt-feature model predicts the resolving tier; single dispatch, no wasted generation | P2/P3: the second strategy, honestly scoped. **Not shipped before #12** | 12,7 | L | PR3, PR5 |
+| 23 | **Ablation table** | Four rows on one axis: fixed-model baseline, calibrated confidence, trained classifier, oracle ceiling — with gap-to-oracle per row | P3: the only honest way to read a classifier result [S8]. If the classifier does not beat confidence, CAMIR reports it | 22,12,7 | S | PR3, PR5 |
+| 24 | **Drift monitor** (F19) | Watches escalation rate, calibration error and per-endpoint quality against the `frontier_run` the active policy cites | P2: his March A/B test is two model upgrades stale and nothing told him | 12,15 | M | PR5 |
 | 25 | **Recalibration scheduler** | Pool-manifest change or drift trigger queues a re-run and emits a new dated `frontier_run` | P2: the policy stops being a one-time guess | 24,7 | M | PR5, PR9 |
 | 26 | **Frontier diff** (F20) | Old curve against new with the chosen tolerance point projected onto both | P2/P5: "did *my* point move", not "did the curve move" | 25,15 | S | PR4, PR9 |
-| 27 | **Label recycler** | Promotes production `judgment_record` rows into the classifier's training set and the gate's calibration set | P2: the per-deployment loop that is the only thing that compounds | 3,13,22 | M | PR2, PR3 |
+| 27 | **Label recycler** | Promotes production `judgment_record` rows into the classifier's training set and the gate's calibration set | P2: the per-deployment loop that is the only thing that compounds | 3,12,22 | M | PR2, PR3 |
 | 28 | **Bring-your-own judge interface** | Wen's judge behind the same interface; her agreement statistics computed identically | **P3: the reason she evaluates at all** | 3,5 | M | PR8 |
 | 29 | **N-tier registry** | Arbitrary tier counts and specialist tiers, not a fixed small/mid/large | P3: five tiers including a fine-tuned specialist. She abandoned RouteLLM partly because two were not enough | 2 | M | PR10 |
 | 30 | **Shadow report distribution** | Per-endpoint shadow report pushed to the tolerance owner before any enforcement, on a schedule | P5: consultation as a mechanism, not a courtesy | 17,15 | S | PR4 |
@@ -77,7 +77,7 @@ Principles PR1–PR10: [PRD.md](PRD.md) §3. Personas P1–P6: [../strategy/pers
 | 46 | **Per-endpoint frontier** | A separate curve per endpoint rather than one per deployment | P5: his endpoint's exchange rate, not the shared service's average | 10,34 | M | PR9, PR4 |
 | 47 | **Per-endpoint spend guardrail** | Hard daily spend ceiling per endpoint, enforced by forcing the small tier or shedding | P4: a budget line that cannot surprise her twice | 20,15 | S | PR4 |
 | 48 | **Pool federation** | Routing across multiple clusters or regions with per-cluster cost axes | P3: high-volume, multi-region, heterogeneous hardware | 2,6,32 | L | PR9 |
-| 49 | **In-process router SDK** | Non-proxy mode for teams unwilling to add a network hop | P3: removes the proxy's latency and failure domain. Deliberately Later — the proxy is what makes P1's afternoon possible | 12,13 | M | PR2 |
+| 49 | **In-process router SDK** | Non-proxy mode for teams unwilling to add a network hop | P3: removes the proxy's latency and failure domain. Deliberately Later — the proxy is what makes P1's afternoon possible | 13,12 | M | PR2 |
 | 50 | **Tolerance recommender** | Given a target spend, proposes the tolerance that reaches it and shows the projected quality delta | P4: inverts the question from "what does this cost" to "what do I give up to hit my number" | 10,15,26 | M | PR4, PR9 |
 
 ---
@@ -90,7 +90,7 @@ The mapping rule has teeth only if something fails it. Each of these was propose
 |---|---|
 | Built-in semantic cache | Maps to no principle and violates non-goal N3. It would also let CAMIR bank cache savings as routing savings — the incentive problem this pack accuses incumbents of [S17] |
 | Prompt optimisation / rewriting | Changes the request, so the counterfactual in #20 stops being computable. Maps to nothing |
-| Latency-aware routing | A real third axis [S12] and an explicit non-goal (N6). Deferred by decision, not by mapping failure — recorded here so it is not smuggled back in as a "small addition to #13" |
+| Latency-aware routing | A real third axis [S12] and an explicit non-goal (N6). Deferred by decision, not by mapping failure — recorded here so it is not smuggled back in as a "small addition to #12" |
 | A public model leaderboard | Ranks models, not routes on a customer's traffic. Contradicts PR9: models are points, routers are curves, and CAMIR's unit is the curve |
 | Multi-turn conversation routing | Non-goal N5; needs a different cost model and evaluation frame [S6] |
 | A chat UI over the pool | Would make CAMIR a consumer of its own router rather than a measurement layer. Maps to nothing |
@@ -99,6 +99,6 @@ The mapping rule has teeth only if something fails it. Each of these was propose
 
 ## Recommended next 3
 
-1. **Freeze the Now list at 18 and cut #22 from any conversation about the first release.** The classifier route is the most interesting feature here and the one with the weakest evidence behind it [S4]; it depends on #13, which is also its baseline. Building it first inverts the ordering [S8] forces.
+1. **Freeze the Now list at 18 and cut #22 from any conversation about the first release.** The classifier route is the most interesting feature here and the one with the weakest evidence behind it [S4]; it depends on #12, which is also its baseline. Building it first inverts the ordering [S8] forces.
 2. **Move #35 (one-GPU quickstart) up if the first month of discovery is slow.** It is S effort, it depends only on #1, #7 and #10, and it is the only row in the table that manufactures distribution. Sam never pays [S40] and Sam is how Marcus hears about this.
 3. **Put a date on #42 before quoting any savings number publicly.** Caching takes 20–45% of traffic upstream and skews the rest hard [S36][G4]; a savings figure that ignores it is the first number a technical buyer will attack, and it is cheap to measure.

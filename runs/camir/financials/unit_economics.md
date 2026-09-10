@@ -17,7 +17,7 @@
 |---|---|---|---|
 | Customer inference spend | $600,000 | $600,000 | [../strategy/personas.md](../strategy/personas.md) P2, $50k/month |
 | × routable share after upstream cache (f4) | ×0.70 | ×0.70 | Production cache hit rates 20–45% [S36]; midpoint of the loss [G4] |
-| × realised saving rate on routable spend | ×25% | ×25% | `(assumption: conservative vs RouteLLM's 1.41× on MMLU, 1.49× on GSM8K [S2]; no CAMIR measurement exists [G2])` |
+| × realised saving rate on routable spend | ×25% | ×25% | `(assumption: below the whitepaper's own base case — 28% reduction on post-cache token-proportional GPU cost without harness repair, 33% with it (`../tech/whitepaper.md` §2.6); RouteLLM's hosted multiples [S2] are context only; no CAMIR measurement exists [G2])` |
 | = measured annual saving | $105,000 | $105,000 | |
 | × CAMIR share | ×28% | ×28% | `(assumption: no share-of-savings vendor publishes a rate [S38][S39])` |
 | **= ACV** | **$30,000** | **$35,000** | Y3 lift is Product 2 attach, not a price rise ([revenue_build.md](revenue_build.md)) |
@@ -63,33 +63,37 @@ CAMIR's compute is the customer's, not CAMIR's — the harness runs inside their
 
 ## 3. CAC by channel
 
-Blended **~$5,400 (18% of ACV)** in Y1–Y3, from [../strategy/channel_plan.md](../strategy/channel_plan.md).
+Blended **~$4,200 (14% of ACV)** in Y1–Y3, from [../strategy/channel_plan.md](../strategy/channel_plan.md). **Year one alone is ~$11,700**, because Stack A's one-off build lands on the two customers it brings in that year.
 
 | Channel | CAC | Basis | Share of Y1–Y3 logos |
 |---|---|---|---|
-| **Stack B — published frontier / research artifact** | **~$1,200** | Content and one reference `frontier_run`, amortised. The artifact is a byproduct of the product | 30% |
-| **Stack C — peer proof** (Wen's talk, Sam's post) | **~$900** | Community time. **Lowest CAC and the least controllable** | 25% |
-| **Stack A — LiteLLM strategy** [S22] | **~$3,500** | Integration engineering amortised over inbound. **Unagreed dependency**, first in the kill order | 30% |
-| **Stack D — conference talks** | ~$14,000 | Founder time, capped at 3–4 talks/yr | 10% |
-| **Stack E — cloud marketplaces** | rejected Y1–Y3 | **84.3% net** after marketplace fees; revisited at Y5 | 0% |
+| **Stack A — LiteLLM strategy** [S22] | **~$0 marginal**; ~$40,000 one-off build ≈ $1,380 per customer over Y1–Y3 | 4–6 engineer-weeks to build and upstream the strategy. **Unagreed dependency**, first in the kill order | 40% |
+| **Stack B — published frontier / methodology** | **~$8,300** | ~$25,000 of GPU-hours and engineering per publication, ~3 evaluations each. Half of it is fairly chargeable to R&D | 30% |
+| **Stack C — peer proof** (Wen's talk, Sam's post) | **~$3,000** | Supporting a reference deployment beyond normal onboarding. **Lowest CAC of the live channels, least controllable** | 20% |
+| **Stack D — conference talks** | **~$6,000** | ~$12,000 per talk, ~2 evaluations each; capped at 3–4 talks/yr | 10% |
+| **Stack E — cloud marketplaces** | rejected Y1–Y3 | **84.3% net** after marketplace fees; revisited at ~25 customers | 0% |
 | **Outbound** | rejected | **CAC ~117% of a $30,000 ACV** | 0% |
 
-**Payback: ~2.2 months** at a 75% gross margin ($5,400 ÷ ($30,000 × 0.75) × 12). **At the honest Y1 margin of 42% it is 5.1 months** — still good, and 2.3× the headline. Both numbers appear here because only one of them is true in year one.
+**Blend:** 0.4 × $1,380 + 0.3 × $8,300 + 0.2 × $3,000 + 0.1 × $6,000 = **~$4,240**.
+
+**Payback: ~2.2 months** at the steady-state 75% gross margin ($4,200 ÷ ($30,000 × 0.75) × 12). **At the honest Y1 margin of 42% it is 4.0 months**; and a year-one customer carrying the ~$11,700 build-loaded CAC pays back in **11 months** at 42%. All three are true at different points in the company's life, which is why all three appear here.
+
+**Where the dependency bites:** if the LiteLLM contribution is refused, Stack A's 40% redistributes to B, C and D and the blend rises to **~$6,150** (0.5 × $8,300 + 0.33 × $3,000 + 0.17 × $6,000) — still viable, and 46% worse.
 
 ---
 
 ## 4. LTV, and why it is quoted at the low end
 
-| | Y1–Y4 | Y5+ |
+| | Y1–Y4 | Y5+ (upside, not in the revenue table) |
 |---|---|---|
 | Gross logo churn | **15%/yr** | 12%/yr |
 | Implied life | 6.7 yrs | 8.3 yrs |
 | NRR | 112–118% | same |
 | **LTV at 75% GM, no NRR** | **$150,000** | $187,000 |
 | **LTV at 75% GM, 112% NRR** | ~$280,000 | ~$350,000 |
-| **LTV:CAC** | **28:1** at the no-NRR figure | — |
+| **LTV:CAC** | **~36:1** at the no-NRR figure and $4,200 CAC; **~13:1** against the year-one build-loaded $11,700 | — |
 
-**The 15% churn assumption is deliberately pessimistic and should stay that way.** CAMIR is a proxy: change one base URL and you are out. A6 records that rising switching cost from accumulated tolerance policies and routing history is **untested**, and this pack does not improve on it. A 28:1 LTV:CAC computed on an unvalidated retention assumption is a ratio, not evidence — **the number to watch is survival through a pool change** ([../validation/metrics_by_stage.md](../validation/metrics_by_stage.md) stage 3), which is the event [S29] guarantees will come.
+**The 15% churn assumption is deliberately pessimistic and should stay that way.** CAMIR is a proxy: change one base URL and you are out. A6 records that rising switching cost from accumulated tolerance policies and routing history is **untested**, and this pack does not improve on it. A 36:1 LTV:CAC computed on an unvalidated retention assumption is a ratio, not evidence — **the number to watch is survival through a pool change** ([../validation/metrics_by_stage.md](../validation/metrics_by_stage.md) stage 3), which is the event [S29] guarantees will come.
 
 ---
 
@@ -118,8 +122,10 @@ Blended **~$5,400 (18% of ACV)** in Y1–Y3, from [../strategy/channel_plan.md](
 | ACV | $30,000 | $32,000 | $35,000 | $50,000 |
 | Cost to serve | $17,500 | $11,800 | $8,800 | $9,500 |
 | Gross margin | **42%** | **63%** | **75%** | **81%** |
-| CAC | $5,400 | $5,400 | $5,400 | $6,800 |
-| **Y1 contribution after CAC** | **$7,100** | $14,800 | $22,000 | $34,200 |
+| CAC | $4,200 | $4,200 | $4,200 | $6,800 |
+| **First-year contribution after CAC**, per customer landed that year | **$8,300** | $16,000 | $22,000 | $33,700 |
+
+*Y5 CAC is higher because marketplaces are revisited once the proxy channel saturates (assumption). A customer landed in year one against the build-loaded ~$11,700 CAC contributes **$800** in its first year — the build is paid for by the customers who follow it.*
 
 **The bend from 42% to 75% is entirely onboarding automation**, not scale. It is the single most important engineering investment in [use_of_funds.md](use_of_funds.md) that is not a product feature, and it is invisible on any roadmap organised by customer-facing capability.
 

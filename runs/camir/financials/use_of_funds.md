@@ -49,9 +49,9 @@ The cheapest information available anywhere in the plan.
 |---|---|---|
 | Team of 4 (2 eng + founding eng + founder), 8 months | $520,000 | The high-fidelity MVP: ingress proxy, cascade route, conformal-thresholded gate, tolerance policies with named owners, shadow mode, pin registry, trace stamper, cost meter, counterfactual ledger |
 | **Onboarding automation** | **$120,000** | Log-format coverage, pre-flight estimation, corpus defaults. **The 42%→75% gross-margin bend is entirely this** ([unit_economics.md](unit_economics.md) §6) |
-| LiteLLM strategy integration | $60,000 | Stack A, ~30% of Y1–Y3 logos — **and the dependency is unagreed** |
+| LiteLLM strategy integration | $60,000 | Stack A, ~40% of Y1–Y3 logos: the ~$40,000 build in [../strategy/channel_plan.md](../strategy/channel_plan.md) plus upstream maintenance — **and the dependency is unagreed** |
 | 5 design partners: GPU, support, travel | $80,000 | E13, the veto experiment |
-| Published reference frontier + cost-axis derivation | $40,000 | The Stack B artifact at ~$1,200 CAC, and the public credibility [S7] leaves unclaimed |
+| Published reference frontier + cost-axis derivation | $40,000 | The Stack B artifact (~$8,300 CAC, half of it fairly chargeable to R&D), and the public credibility [S7] leaves unclaimed |
 
 **Milestone: Gate 2.1** — **≥ 2 of 5 design partners' consuming engineers enable enforcement on their own endpoint**, within 6 weeks of their own shadow report, unprompted. Plus: escalation rate below break-even on ≥ 60% of enforced endpoints, disqualification rate non-zero.
 
@@ -80,7 +80,7 @@ The cheapest information available anywhere in the plan.
 | 1 | **Evaluation / benchmark engineer** | Block 1 | The whole company is a measurement claim. This is the founding team's stated edge (A13) and the first hire has to be the thing being sold | — |
 | 2 | **Systems engineer** (serving, GPU, throughput) | Block 1 | The ceiling probe is O(corpus × tiers) full generations; it either finishes in a customer's afternoon or the wedge is a project | — |
 | 3 | **Founding product engineer** | Block 2 | The four P0 features are pure product engineering with **no technique behind them** ([../tech/techniques/technique_feature_matrix.md](../tech/techniques/technique_feature_matrix.md) §4), and a technically led team builds them last | Nothing to build until the ceiling exists |
-| 4 | **Developer-relations / community** | Block 2, late | Stacks B and C are 55% of Y1–Y3 logos at the lowest CAC, and P6 Sam is the channel | Community before an artifact is marketing without a product |
+| 4 | **Developer-relations / community** | Block 2, late | Stacks B and C are 50% of Y1–Y3 logos, C is the lowest-CAC live channel, and P6 Sam is the channel | Community before an artifact is marketing without a product |
 | 5 | **Technical account / solutions** | Block 3 | The sale is an evaluation; onboarding cost is the margin story | — |
 | 6 | **Second systems engineer** | Block 3 | Multi-endpoint scale and recalibration load | — |
 

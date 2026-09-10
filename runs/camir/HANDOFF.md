@@ -70,7 +70,7 @@ These were settled with the founder or derived in phases 1–2. **Do not re-open
 ### 2.5 Numbers that must stay consistent across the pack
 
 - ACV **$30,000/yr** · TAM base **~$70M/yr** (corridor $10–360M) · SAM **~$20M/yr** · **~1,370 reachable companies** (corridor ~470–3,800) · SOM Y1 ~5 / Y2 ~27 / Y3 ~68 customers, $2.4M ARR at Y3.
-- Blended year-one CAC **~$5,400 (18% of ACV)**, payback ~2.2 months.
+- Blended Y1–Y3 CAC **~$4,200 (14% of ACV)**, payback ~2.2 months at 75% gross margin; year one alone ~$11,700 (Stack A's $40k build lands on ~2 customers). *Corrected 2026-09-10 from $5,400, which did not follow from `strategy/channel_plan.md`'s own inputs.*
 - **Never quote "85% cost reduction" without naming MT-Bench.** RouteLLM's CPT is **3.66× MT-Bench / 1.41× MMLU / 1.49× GSM8K** [S2]. FrugalGPT: up to 98%, only 16.6% escalating, **under 2023-era hosted price ratios** [S3] — and the tier spread is now **compressing** [S29].
 - Self-hosted cost: ~$0.10/M tokens raw on a batched H100 vs ~$0.60/M hosted [S26]; **idle GPU at 10% utilisation costs 10× per token and realistic all-in is 3–5× raw GPU rental** [S27]. Never quote a saving against raw GPU cost without this correction.
 - Semantic caching removes **20–45% of production traffic upstream** and adversely selects the remainder toward the hard end [S36], gap [G4].

@@ -102,9 +102,11 @@ This works because it is a finding rather than an endorsement, it is checkable, 
 | Public `frontier_run`s published by third parties | ≥ 3 in year 1 | Make export one command; never watermark it |
 | Conference talks citing the methodology | ≥ 1 in year 1 | Publish the cost-axis derivation as a standalone document |
 
-### What is not a growth motion
+### What is not a growth motion — and one tension that is
 
-**Usage-based expansion revenue.** [../financials/pricing.md](../financials/pricing.md) prices out of the inference bill; a price that grows with traffic makes CAMIR more expensive exactly when the customer's own efficiency work is succeeding, which is the incentive shape [S17] and [S20] describe and this pack is built against. **Share-of-savings is also rejected here** despite the FinOps precedent [S38][S39] — it makes CAMIR the party computing its own invoice, and the whole architecture exists to avoid that.
+**Seats.** Nobody sits in front of CAMIR; the buyer is the bill.
+
+**The tension, stated rather than hidden.** Year one prices on **share of measured savings** ([../financials/pricing.md](../financials/pricing.md)), which grows only when the customer's saving grows — as more endpoints are enforced. Product 2 and the declared repricing trigger move to a **percentage of spend under management** ([../financials/revenue_build.md](../financials/revenue_build.md) M6), which grows with the customer's bill whether or not CAMIR saved anything. The second is the OpenRouter shape [S17] that this pack argues against, and it is where the revenue build reaches venture scale. The guard is the same one that makes share-of-savings credible: the counterfactual is computed by open code inside the customer's perimeter, so a customer paying on spend can always see what the spend bought. **Whether that guard survives a spend-percentage contract is untested**, and it is the incentive question an investor should ask about the Y5–Y8 rows.
 
 ---
 

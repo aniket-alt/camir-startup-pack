@@ -162,7 +162,7 @@ P1 **Priya Raghunathan** (edge-low, drop-in, self-hosts for data residency not p
 ### 4.8 Numbers that must stay consistent pack-wide
 
 - ACV **$30,000/yr** · TAM base **~$70M/yr** (corridor $10–360M) · SAM **~$20M/yr** · **~1,370 reachable companies** · SOM Y1 ~5 / Y2 ~27 / Y3 ~68 customers, **$2.4M ARR at Y3**
-- Blended year-one CAC **~$5,400 (18% of ACV)**, payback ~2.2 months at steady-state margin
+- Blended Y1–Y3 CAC **~$4,200 (14% of ACV)**, payback ~2.2 months at steady-state margin *(corrected from $5,400 after this brief was issued)*
 - **Y1 gross margin is 42%, not 75%** — 75% is the Y3 steady state. `financials/unit_economics.md` derives both; quoting only 75% is wrong.
 - **Never quote "85% cost reduction" without naming MT-Bench.** RouteLLM's CPT is **3.66× MT-Bench / 1.41× MMLU / 1.49× GSM8K** [S2]. FrugalGPT: up to 98%, only 16.6% escalating, under **2023-era hosted price ratios** [S3] — and the tier spread is now **compressing** [S29].
 - Self-hosted cost: ~$0.10/M tokens raw on a batched H100 vs ~$0.60/M hosted [S26]; **idle GPU at 10% utilisation costs 10× per token, and realistic all-in is 3–5× raw GPU rental** [S27]. Never quote a saving against raw GPU cost without this correction.

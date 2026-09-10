@@ -11,9 +11,9 @@
 
 A platform team serving mixed-difficulty traffic from one large tier overpays on the easy majority. That much is settled and has been since FrugalGPT [S3]. What is *not* settled — and what nobody has published — is the size of the prize on a **self-hosted open-weight pool** after semantic caching has taken the easy repeats [S36], after the tier cost spread compressed [S29], and after the product engineers who bear the quality risk have pinned their endpoints back to the large tier [S21].
 
-This whitepaper does that arithmetic. The answer is **~1.5× on token-proportional GPU cost in the base case (≈33% reduction) at a declared quality tolerance of ≤2 percentage points, with a conservative floor of 1.08× and an optimistic ceiling of 2.84×**. Every input is a factor a reader can change and recompute (§2.6).
+This whitepaper does that arithmetic. The answer is **~1.4–1.5× on token-proportional GPU cost in the base case (28–33% reduction, depending on whether harness repair converts into production routing) at a declared quality tolerance of ≤2 percentage points, with a conservative floor of 1.08× and an optimistic ceiling of 2.84×**. Every input is a factor a reader can change and recompute (§2.6).
 
-That is not a 10× claim and this document will not make one. Three of the four mechanisms below are already in the literature and are not CAMIR's to claim. The one that is unclaimed is the third: **a meaningful share of what a team will measure as "the small tier cannot do this" is its own harness**, and repairing the harness moves the frontier without touching the router [S5]. The routing plateau result says the routing *decision* is near its ceiling under current signals — 21 methods converging into a narrow band, best remedies worth up to 2.13 percentage points [S4]. The unsolvability-ceiling result, published a month later, says the routing *measurement* is broken in ways worth more than 2.13 points: truncation under fixed generation budgets in **65% of MMLU and 57% of MedQA cases**, **5–12% parse failures on MMLU**, judge bias toward verbosity over correctness [S5].
+That is not a 10× claim and this document will not make one. Three of the four mechanisms below are already in the literature and are not CAMIR's to claim. The one that is unclaimed is the third: **a meaningful share of what a team will measure as "the small tier cannot do this" is its own harness**, and repairing the harness moves the frontier without touching the router [S5]. The routing plateau result says the routing *decision* is near its ceiling under current signals — 21 methods converging into a narrow band, best remedies worth up to 2.13 percentage points [S4]. The unsolvability-ceiling result says the routing *measurement* is broken in ways worth more than 2.13 points: truncation under fixed generation budgets in **65% of MMLU and 57% of MedQA cases**, **5–12% parse failures on MMLU**, judge bias toward verbosity over correctness [S5].
 
 **The claim is therefore not "our router is smarter." It is "your frontier is measurable on your pool, and a meaningful part of the apparent ceiling is your harness."**
 
@@ -37,7 +37,7 @@ A fixed-model policy states no quality tolerance at all. Marcus picked the 70B o
 
 **Magnitude.** Not a percentage — a **duration**. This friction sets how long F1 runs uncorrected, and the observed answer in both persona cards is "indefinitely, until someone is told to cut 20%." It persists because the alternative is not available: a 2026 paper argues directly that router evaluations across papers are **not comparable** [S13], so a team cannot look the number up. They guess, and the guess is the fixed-model baseline.
 
-### F3 — Instrumentation error inflates apparent difficulty, and the inflation is one-directional
+### F3 — Instrumentation error inflates apparent difficulty, in a direction that must be measured per tier
 
 When a team *does* measure, it measures against its own harness, and 2026 audited what those harnesses do. Truncation under fixed generation budgets affected **65% of MMLU and 57% of MedQA cases**; output-format mismatch caused **5–12% parse failures on MMLU**; judges are biased toward verbosity over correctness — across **206,000 query-model pairs** on Gemma 4 and Llama 3.1 families [S5]. Independently: judge test-retest same-verdict rates are **>95% at temperature 0 but ~70% at temperature 1**, position bias produces **~40% GPT-4 inconsistency**, verbosity bias inflates by **~15%** [S34]. Inter-judge agreement is only **~76%**, so judge *choice* may damage validity more than judge randomness [S33].
 
@@ -47,7 +47,7 @@ When a team *does* measure, it measures against its own harness, and 2026 audite
 
 ### F4 — Utilisation waste, which can make a naive pool cost *more*
 
-A self-hosted tier is billed by the hour, not the token. **A GPU idle at 10% utilisation costs 10× per token** [S27]. And CAMIR's tiers are **distinct base models**, not adapters: vLLM multi-LoRA reduces per-model memory overhead to megabytes only because adapters share one base model [S31], which small/mid/large tiers do not. Each tier needs separate resident VRAM (`../research/capability_table.md` C2).
+A self-hosted tier is billed by the hour, not the token. **A GPU idle at 10% utilisation costs 10× per token** [S27]. And small/mid/large tiers are usually **distinct base models**, not adapters: vLLM multi-LoRA reduces per-model memory overhead to megabytes only because adapters share one base model [S31], which distinct base models do not — a fine-tuned specialist on an existing base is the exception, and the pool manifest records which is which ([architecture/D04.md](architecture/D04.md)). Each distinct-base tier needs separate resident VRAM (`../research/capability_table.md` C2).
 
 **Magnitude.** Adding a small tier that receives 30% of a stream but occupies its own accelerator can raise blended cost per token rather than lower it. This is the friction that turns a routing project into a negative result, and no routing paper models it.
 
@@ -90,21 +90,25 @@ Notation. Costs are normalised to the large tier: `c_l = 1`. Tier cost ratio `r 
 
 **Removes:** F1. **Primary route.**
 
-**Mechanism.** Send every request to the small tier. Score the completion with a calibrated uncertainty measure — maximum softmax probability, margin, predictive entropy, or distance-to-uniform. Escalate only above threshold. See [deep_dives.md](deep_dives.md) §1 and [architecture/D02.md](architecture/D02.md).
+**Mechanism.** Send every request to the small tier. Score the completion with a calibrated uncertainty measure — maximum softmax probability, margin, predictive entropy, or distance-to-uniform. Escalate only above threshold. See [deep_dives.md](deep_dives.md) DD2 and [architecture/D03.md](architecture/D03.md).
 
 **Evidence.** FrugalGPT's cascade formulation reached 50–98% savings with **16.6% escalation** [S3]. Critically, [S8] finds that **simple confidence measures route as well as trained routing models** — so the escalation signal is a by-product of a generation already paid for, and the mechanism does not depend on solving the hard prediction problem (`../research/survey.md` §2.2–2.3).
 
 **The arithmetic, which is exact rather than estimated:**
 
 ```
-cost_cascade / cost_baseline  =  c_small_attempt + c_gate + c_large_escalation
-                                (all terms measured in GPU-seconds per request)
+cost_cascade / cost_baseline  =  r + e
+    where  r  = c_small_attempt / c_large   (every request pays the small attempt)
+           e  = escalation rate             (escalated requests also pay the large answer)
+           c_gate ≈ 0 for log-likelihood scoring; sampling-based gates add a term
 ```
+
+In production all three terms are measured in GPU-seconds per request ([architecture/D05.md](architecture/D05.md)); normalised, they reduce to `r + e`, which is what the table below and §2.6 use.
 
 Two structural consequences fall straight out:
 
 1. **The cascade beats the baseline iff `e < 1 − r`.** At `r = 0.10` that is `e < 0.90`; at `r = 0.25` it is `e < 0.75`. Generous, but not unconditional — and the condition tightens exactly as the tier spread compresses [S29].
-2. **The cascade can never beat `1/r`.** At `r = 0.25` the hard ceiling is 4×, before any escalation at all. **Any cascade claim above 4× on a modern self-hosted pool is arithmetically impossible**, which by itself disposes of quoting FrugalGPT's 98% [S3] into a 2026 deck.
+2. **The cascade can never beat `1/r`.** At `r = 0.25` the hard ceiling is 4×, before any escalation at all. **With a 31B-class small tier, any cascade claim above 4× is arithmetically impossible**; even at `r = 0.10` the ceiling is 10×. Either bound disposes of quoting FrugalGPT's 98% — a 50× cost ratio [S3] — into a 2026 deck.
 
 | `e` | at `r`=0.25 | at `r`=0.15 | at `r`=0.10 |
 |---|---|---|---|
@@ -121,7 +125,7 @@ Two structural consequences fall straight out:
 
 **Removes:** the cascade's own overhead, on the subset where difficulty *is* predictable.
 
-**Mechanism.** Predict difficulty from prompt features before generation and dispatch once. See [deep_dives.md](deep_dives.md) §2 and [architecture/D03.md](architecture/D03.md).
+**Mechanism.** Predict difficulty from prompt features before generation and dispatch once. See [deep_dives.md](deep_dives.md) DD5 and [techniques/decision_tree.md](techniques/decision_tree.md) Band 3.
 
 **Evidence, stated against the mechanism.** This is the weaker of the two routes and the pack says so. 21 routing methods across 5 benchmarks converge into a narrow band far below the oracle router, diagnosed as a **predictability bottleneck**: routers learn globally averaged model-performance trends rather than query-specific signal. More data, stronger encoders and encoder fine-tuning bought **up to 2.13 percentage points** [S4].
 
@@ -150,7 +154,7 @@ Worked, at `r = 0.15`, baseline accuracy `a_l = 0.85` `(assumption: illustrative
 
 **Removes:** F3. **This is the only one of the four mechanisms that is CAMIR's.**
 
-**Mechanism.** Four instrumented fixes, each aimed at a named artifact in [S5] and [S34]: generous generation budgets with per-request truncation counters; strict output-format parsing with parse-failure counters rather than silent scoring-as-wrong; length-controlled judging; temperature-0 multi-judge scoring with position permutation and **published inter-judge agreement**. See [deep_dives.md](deep_dives.md) §3 and [architecture/D04.md](architecture/D04.md).
+**Mechanism.** Four instrumented fixes, each aimed at a named artifact in [S5] and [S34]: generous generation budgets with per-request truncation counters; strict output-format parsing with parse-failure counters rather than silent scoring-as-wrong; length-controlled judging; temperature-0 multi-judge scoring with position permutation and **published inter-judge agreement**. See [deep_dives.md](deep_dives.md) DD1 and DD3, and [architecture/D01.md](architecture/D01.md).
 
 **Evidence.** [S5], across 206,000 query-model pairs: truncation in **65% of MMLU / 57% of MedQA** cases, **5–12% MMLU parse failures**, verbosity-biased judging. [S34]: verbosity bias ~15% inflation, position bias ~40% inconsistency, temperature-0 verdict stability >95%. [S33]: ~76% inter-judge agreement, and a 2026 RAND study finding no judge uniformly reliable across benchmarks.
 
@@ -192,7 +196,7 @@ Stated here so the assembled arithmetic cannot be read as hiding them.
 
 - **Semantic caching.** 20–45% production hit rates [S36]; declared out of scope in `../BRIEF.md` §Wedge. Upstream, composes, and *already deducted* from the inputs below.
 - **Latency.** The cascade roughly doubles latency on escalated requests. Latency-aware routing is a live axis [S12] and a declared year-one non-goal.
-- **Prefill-activation routing** [S10]. The one signal class a hosted competitor structurally cannot use, and therefore the highest-upside direction available. It requires a serving-engine patch, so it is **labelled research risk and carries no multiplier here** ([deep_dives.md](deep_dives.md) §7, [architecture/D01.md](architecture/D01.md)).
+- **Prefill-activation routing** [S10]. The one signal class a hosted competitor structurally cannot use, and therefore the highest-upside direction available. It requires a serving-engine patch, so it is **labelled research risk and carries no multiplier here** ([deep_dives.md](deep_dives.md) DD5, [not_vaporware.md](not_vaporware.md) §4).
 
 ### 2.6 The assembled arithmetic — multiply it back yourself
 
@@ -218,7 +222,7 @@ multiple       = 1 / blended ratio
 | **multiple on token-proportional GPU cost** | **1.08×** | **1.49×** | **2.84×** |
 | **cost reduction** | **8%** | **33%** | **65%** |
 
-**Headline: ~1.5× (33% reduction) on token-proportional GPU cost at a declared ≤2pp quality tolerance; corridor 1.08×–2.84×.**
+**Headline: ~1.5× (33% reduction) on token-proportional GPU cost at a declared ≤2pp quality tolerance; corridor 1.08×–2.84×.** **With `h = 0` — harness repair improving the measurement but not production routing — the base case is 1.39× (28% reduction).** §2.3 says artifact correction changes measured labels first, so 1.39× is the number to quote until paired held-out labels show `h` converts; 1.5× is the case where it does.
 
 Two readings a skeptic should take from the table rather than from the headline:
 
@@ -245,7 +249,7 @@ The arithmetic above is the same for all three edges. What changes is who sets t
 
 ### 4.1 The multiple is on token-proportional GPU cost, not on the all-in inference line
 
-The largest single correction in this document, and it belongs first. **Realistic all-in self-hosted cost is 3–5× raw GPU rental** once engineering time is counted [S27]. Engineering time does not scale with tokens routed. If raw rental is 20–33% of all-in, a 33% cut on the raw line is **7–11% of the all-in line — an all-in multiple of roughly 1.08–1.12×**. And CAMIR *adds* to the non-token side: a proxy to operate, thresholds to recalibrate, a benchmark to re-run on every model upgrade.
+The largest single correction in this document, and it belongs first. **Realistic all-in self-hosted cost is 3–5× raw GPU rental** once engineering time is counted [S27]. Engineering time does not scale with tokens routed. If raw rental is 20–33% of all-in, a 33% cut on the raw line is **7–11% of the all-in line — an all-in multiple of roughly 1.07–1.12×**. And CAMIR *adds* to the non-token side: a proxy to operate, thresholds to recalibrate, a benchmark to re-run on every model upgrade.
 
 Two things keep this from being fatal. First, the token-proportional share rises with volume, which is precisely the definition of the beachhead — Marcus at $50k/month has a very different ratio from Priya. Second, the honest unit is **cost per request**, not total spend, which is what Dana needs anyway to separate growth from efficiency (`../strategy/value_prop_canvas.md` Canvas 2, PR-D2). `../financials/unit_economics.md` inherits this correction and must not quote §2.6 against an all-in denominator.
 
@@ -265,7 +269,7 @@ Production semantic-cache hit rates run **20–45%** [S36], and hits are disprop
 
 ### 4.5 The mechanism commoditises into the serving engine
 
-The vLLM Semantic Router vision paper describes exactly the Workload–Router–Pool decomposition CAMIR's architecture parallels [S11]. On an 18-month horizon the routing *mechanism* is plausibly free inside the serving layer, and routing is already free inside a hosted catalog with no separate fee [S20]. **The measurement layer is the asset** — mixed-difficulty benchmark, judging protocol, and a **cost axis derived for self-hosted pools, which no published benchmark has derived** (RouterBench prices against hosted API list prices [S7]; `../research/capability_table.md` C10). That derivation is unclaimed, achievable, and a named deliverable ([deep_dives.md](deep_dives.md) §4). It is not a moat; it is a head start, and `../BRIEF.md` §Moat already grades the moat as weak.
+The vLLM Semantic Router vision paper describes exactly the Workload–Router–Pool decomposition CAMIR's architecture parallels [S11]. On an 18-month horizon the routing *mechanism* is plausibly free inside the serving layer, and routing is already free inside a hosted catalog with no separate fee [S20]. **The measurement layer is the asset** — mixed-difficulty benchmark, judging protocol, and a **cost axis derived for self-hosted pools, which no published benchmark has derived** (RouterBench prices against hosted API list prices [S7]; `../research/capability_table.md` C10). That derivation is unclaimed, achievable, and a named deliverable ([deep_dives.md](deep_dives.md) DD4, [architecture/D05.md](architecture/D05.md)). It is not a moat; it is a head start, and `../BRIEF.md` §Moat already grades the moat as weak.
 
 ### 4.6 Numbers this document refuses to quote
 
@@ -275,7 +279,7 @@ The vLLM Semantic Router vision paper describes exactly the Workload–Router–
 
 ### 4.7 A cost-optimising router is a new attack surface
 
-**Cascade deferral attacks use semantics-preserving perturbations to suppress small-tier confidence and force escalation** [S9] — an attacker inflates a victim's inference bill without breaking anything. `e` becomes an adversarially controlled variable, and every multiple in §2.6 is a function of `e`. Treated in [architecture/D06.md](architecture/D06.md) and `not_vaporware.md`.
+**Cascade deferral attacks use semantics-preserving perturbations to suppress small-tier confidence and force escalation** [S9] — an attacker inflates a victim's inference bill without breaking anything. `e` becomes an adversarially controlled variable, and every multiple in §2.6 is a function of `e`. Treated in [architecture/D08.md](architecture/D08.md) and [deep_dives.md](deep_dives.md) DD2.
 
 ---
 
