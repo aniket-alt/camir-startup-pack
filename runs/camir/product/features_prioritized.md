@@ -102,3 +102,5 @@ The mapping rule has teeth only if something fails it. Each of these was propose
 1. **Freeze the Now list at 18 and cut #22 from any conversation about the first release.** The classifier route is the most interesting feature here and the one with the weakest evidence behind it [S4]; it depends on #12, which is also its baseline. Building it first inverts the ordering [S8] forces.
 2. **Move #35 (one-GPU quickstart) up if the first month of discovery is slow.** It is S effort, it depends only on #1, #7 and #10, and it is the only row in the table that manufactures distribution. Sam never pays [S40] and Sam is how Marcus hears about this.
 3. **Put a date on #42 before quoting any savings number publicly.** Caching takes 20–45% of traffic upstream and skews the rest hard [S36][G4]; a savings figure that ignores it is the first number a technical buyer will attack, and it is cheap to measure.
+
+<!-- critic: round 1 recorded 2026-09-10 in ../audit/CRITIC_LOG.md — 1 minor fixed. Round 0 (commit 712241c) edits were retained but left no verdict record. -->

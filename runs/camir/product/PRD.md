@@ -149,7 +149,7 @@ The superset. Ranking, dependencies and effort live in [features_prioritized.md]
 | **Trace stamper** | Tier decision, route type, confidence, escalation flag and policy version written as span attributes on the **caller's own** trace | PR2, PR4 |
 | **Counterfactual savings ledger** | Per request: what the fixed-model baseline would have cost, what was actually spent, and the quality delta | PR9 |
 | **Frontier builder** | Plots models as points and routes as curves in the cost-quality plane | PR9 |
-| **Tolerance breach alert** | Measured quality on an endpoint crosses its declared tolerance → alert to the tolerance owner, with an auto-revert option | PR4 |
+| **Tolerance breach alert** | Measured quality on an endpoint crosses its declared tolerance → revert to the fixed-model baseline, then alert the tolerance owner. **Auto-revert is on by default** (O4); the owner may disable it for their own endpoint | PR4 |
 | **Savings report** | One page: baseline cost, cost at declared tolerance, measured quality delta, judge agreement, and who signed off | PR9 |
 
 ### 5.5 Recalibrate
@@ -234,3 +234,5 @@ M14 measured savings attributed, per the ledger · M15 OSS-to-control-plane conv
 1. **Build the qualify phase before the router.** Replay corpus builder → oracle ceiling probe → artifact guard → disqualification report. It is the only sequence that returns a *negative* result cheaply, it produces M3 (the contribution) before any routing code exists, and it makes G1 true in week one. Everything in §5.1–5.2 is worthless if PR7 fails.
 2. **Ship Ravi's four features in the same release as the first routing decision** — per-endpoint tolerance ownership, tier decision on every trace, shadow mode, unilateral pin-to-large. [../strategy/value_prop_canvas.md](../strategy/value_prop_canvas.md) ranks these above classifier accuracy for all three deciding personas, and [S21] is the public record of what happens when routing ships without them.
 3. **Fix the cost-axis parameterisation in writing before the first `frontier_run`.** The utilisation assumption and the 3–5× all-in multiplier [S27] change the answer by more than any routing improvement will. Publishing the derivation is an unclaimed contribution [S7]; publishing a frontier with an undeclared cost axis reproduces exactly the incomparability [S13] complains of.
+
+<!-- critic: round 1 recorded 2026-09-10 in ../audit/CRITIC_LOG.md — 1 minor fixed. Round 0 (commit 712241c) edits were retained but left no verdict record. -->

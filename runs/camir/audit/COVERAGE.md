@@ -27,18 +27,18 @@
 | A11 | strategy/lean_canvas.md | present | canvas |
 | A12 | strategy/value_prop_canvas.md | present | canvas |
 | A13 | strategy/gtm.md | present | GTM |
-| A14 | product/PRD.md | present | critic edits applied; no verdict log or critic marker recorded |
-| A15 | product/features_flagship.md | present | critic edits applied; no verdict log or critic marker recorded |
-| A16 | product/features_prioritized.md | present | critic edits applied; no verdict log or critic marker recorded |
+| A14 | product/PRD.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md) |
+| A15 | product/features_flagship.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md) |
+| A16 | product/features_prioritized.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md) |
 | A17 | product/journeys/edge_low.md | present | journey |
 | A18 | product/journeys/beachhead.md | present | journey |
 | A19 | product/journeys/edge_high.md | present | journey |
 | A20 | product/journeys/day_in_life.md | present | journey |
 | A21 | product/ux_spec.md | present | UX spec |
-| A22 | tech/whitepaper.md | present | critic edits applied; no verdict log or critic marker recorded |
+| A22 | tech/whitepaper.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md) |
 | A23 | tech/deep_dives.md | present | technical layer |
 | A24 | tech/architecture/00_INDEX.md, D01–D10.md | present | 11 files; Mermaid set pre-verified |
-| A25 | tech/techniques/wave1.md | present | critic edits applied; `critic: unresolved` marker recorded |
+| A25 | tech/techniques/wave1.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md); `critic: unresolved` marker retained |
 | A26 | tech/techniques/wave2.md | present | critic marker retained |
 | A28 | tech/techniques/decision_tree.md | present | Mermaid pre-verified |
 | A29 | tech/techniques/technique_feature_matrix.md | present | matrix |
@@ -48,15 +48,15 @@
 | A33 | narrative/pitch_deck.md | present | 14 claim-led slides |
 | A34 | narrative/future_press.md | present | future-only framing |
 | A35 | narrative/founder_story.md | present | capstone origin stated |
-| A36 | validation/riskiest_assumptions.md | present | critic edits applied; no verdict log or critic marker recorded |
-| A37 | validation/experiment_board.md | present | critic edits applied; no verdict log or critic marker recorded |
+| A36 | validation/riskiest_assumptions.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md) |
+| A37 | validation/experiment_board.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md) |
 | A38 | validation/discovery_guide.md | present | validation |
 | A39 | validation/get_keep_grow.md | present | validation |
 | A40 | validation/stage_gate.md | present | validation |
 | A41 | validation/metrics_by_stage.md | present | validation |
 | A42 | validation/pivot_log.md | present | validation |
-| A43 | financials/pricing.md | present | critic edits applied; `critic: unresolved` marker recorded |
-| A44 | financials/revenue_build.md | present | critic edits applied; `critic: unresolved` marker recorded |
+| A43 | financials/pricing.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md); `critic: unresolved` marker retained |
+| A44 | financials/revenue_build.md | present | critic pass recorded in [CRITIC_LOG.md](CRITIC_LOG.md); `critic: unresolved` marker retained |
 | A45 | financials/unit_economics.md | present | unit economics |
 | A46 | financials/use_of_funds.md | present | funds |
 | A47 | financials/risk_matrix.md | present | risks |
@@ -92,7 +92,7 @@
 - **Mermaid:** all 11 fences (D01–D10 and the decision tree) re-parsed with mermaid 11 under jsdom in the review pass — 0 failures. Two manifest rows had cited files containing no Mermaid (V06 → `00_INDEX.md`, V08 → `whitepaper.md`); V06 now cites `D02.md` and V08 is an image-prompt row.
 - **HTML:** 9 self-contained files were opened as text and checked for inline CSS, source lines and bound labels. They carry exact content where a raster would be unreliable.
 - **Links and citations:** every relative link in every `.md` file under the run resolves; every `[Sn]`/`[Gn]` tag resolves to `research/sources.md` (S1–S40, G1–G5).
-- **Critic process:** the nine drafts received domain-correct edits (Chow's rule qualified, grammar-constrained decoding scoped to schema tasks, self-consistency flagged as conflicting with temperature-0 judging, the artifact-direction claim downgraded to a hypothesis). The per-persona verdict log the critic contract specifies was not recorded, and six of the nine carry no critic marker, so which issues were raised and skipped cannot be reconstructed.
+- **Critic process:** the nine drafts received domain-correct edits (Chow's rule qualified, grammar-constrained decoding scoped to schema tasks, self-consistency flagged as conflicting with temperature-0 judging, the artifact-direction claim downgraded to a hypothesis). The first round left no verdict record; a second, recorded round is in [CRITIC_LOG.md](CRITIC_LOG.md) — 1 fatal, 12 major and 17 minor issues across the nine, plus three cross-document errors (the blended CAC, the status of share-of-savings pricing, and experiment thresholds set three ways) that no single-file review would catch. That round was run by one agent applying three lenses in sequence, not by independent critics, and says so.
 
 ## Gaps and residual risk
 

@@ -45,8 +45,8 @@ Two tracks run in parallel because they need different resources: the measuremen
 | # | Exit criterion | Threshold, declared now | Track | Experiment |
 |---|---|---|---|---|
 | 1.1 | **The oracle ceiling exists** | Median ceiling across ≥ 3 realistic mixed-traffic corpora **above the disqualification threshold** | measurement | E1 |
-| 1.2 | **The artifact share is real** | Guarded-minus-unguarded ≥ **5 percentage points** on at least 2 of 3 corpora | measurement | E2 |
-| 1.3 | **The segment exists** | **≥ 8 of 20 screened** qualify on [discovery_guide.md](discovery_guide.md) S1–S5, median f2 ≥ 25% | discovery | E4 |
+| 1.2 | **The artifact share is real** | Guarded-minus-unguarded ≥ **5 percentage points** of small-tier correctness on at least 2 of 3 corpora; **below 2pp fails**, 2–5pp is amber | measurement | E2 |
+| 1.3 | **The segment exists** | **≥ 6 of 20 screened qualify on [experiment_board.md](experiment_board.md) E4's definition — a self-hosted pool of two or more sizes, ≥ $50k/month, mixed-difficulty traffic through a shared service — with f2 recorded for every call**; fewer than 6 fails | discovery | E4 |
 | 1.4 | **Nobody has measured it** | **≥ 12 of 15** qualified teams have never measured their small tier's ceiling | discovery | E4/Q6 |
 | 1.5 | **The veto is real** | **≥ 7 of 15** report a consuming team blocking or constraining a shared-service change | discovery | E13 |
 | 1.6 | **Free adoption happens** | ≥ 10 third parties reach a `frontier_run` on their own logs | both | E7 |

@@ -142,7 +142,7 @@ Set before any interview so the result cannot be reinterpreted afterwards. These
 
 | Question | Sample | Pass | Fail | Consequence of failure |
 |---|---|---|---|---|
-| Does the segment exist (A3) | 20 screened | **≥ 8 qualify on S1–S5**, with median f2 ≥ 25% | ≤ 3 qualify | The beachhead is smaller than [../strategy/market_sizing.md](../strategy/market_sizing.md)'s corridor; hybrid pools move up the roadmap (A9) |
+| Does the segment exist (A3) | 20 screened | **≥ 6 qualify** on S1–S5 *and* spend ≥ $50k/month — [experiment_board.md](experiment_board.md) E4's definition — with f2 recorded for every call | < 6 qualify | The beachhead is smaller than [../strategy/market_sizing.md](../strategy/market_sizing.md)'s corridor; hybrid pools move up the roadmap (A9) |
 | Has anyone measured their ceiling (Q6) | 15 qualified | **≥ 12 say no** | ≥ 6 say yes with a real artifact | The internal build is further along than assumed; Petal 5 is a stronger competitor than [../strategy/petal_diagram.md](../strategy/petal_diagram.md) prices |
 | Is the veto real (Q10) | 15 qualified | **≥ 7 report a consuming team blocking or constraining a shared-service change** | ≤ 2 | The four P0 features are over-weighted and the roadmap in [../product/features_prioritized.md](../product/features_prioritized.md) is wrong at the top |
 | Does ownership defuse it (solution Q4) | 10 | **≥ 6 name per-endpoint tolerance ownership as sufficient** | ≤ 2 | No feature closes it; the wedge needs rework, not the product |

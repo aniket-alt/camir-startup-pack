@@ -34,14 +34,14 @@ CAMIR's compute is the customer's, not CAMIR's — the harness runs inside their
 
 | Item | Per event | Frequency | Annual GPU cost to the customer |
 |---|---|---|---|
-| Ceiling probe: 8,000 requests × 3 tiers = 24,000 generations | ~11 GPU-hours at batch `(assumption: from [S26] throughput)` | 4–6×/yr (pool changes [S29]) | **~$150–220** at $2.50–3.75/GPU-hr [S26] |
+| Ceiling probe: 8,000 requests × 3 tiers = 24,000 generations | **~11–240 GPU-hours.** The low end assumes [S26]'s high-concurrency batching; the high end scales [../validation/experiment_board.md](../validation/experiment_board.md) E1's unbatched budget (~120 GPU-hours for 12,000 generations, both harness arms) | 4–6×/yr (pool changes [S29]) | **~$110–5,400** at $2.50–3.75/GPU-hr [S26] |
 | Judging: 24,000 answers × 2 judges | ~7 GPU-hours; collapses to near zero where programmatic verification applies | same | ~$100–140 |
 | **Shadow mode**: doubles generation on shadowed endpoints | — | continuous while shadowing | **~$1,500–4,000/yr** — the dominant term, and the one nobody expects |
 | Gate scoring on the critical path | ~1–5 ms, no extra generation on the default estimator | every cascade request | negligible |
 | Control-plane VM in the customer's VPC | one small instance | continuous | ~$600–1,200/yr |
-| **Total customer-borne compute** | | | **~$2,400–5,600/yr** |
+| **Total customer-borne compute** | | | **~$2,300–10,800/yr** — the width is almost entirely the probe's batching assumption |
 
-**Against a $105,000 measured saving that is 2–5%.** It is not a threat to the deal, and it *is* a threat to a small deployment: a customer saving $20,000 who runs three endpoints in permanent shadow keeps only ~$16,000, which is why the pricing floor exists at $12,000/yr and why shadow cost is surfaced per endpoint ([../tech/architecture/D09.md](../tech/architecture/D09.md)).
+**Against a $105,000 measured saving that is 2–10%.** The first measured probe collapses this range, and E14 is the experiment that meters it. It is not a threat to the deal, and it *is* a threat to a small deployment: a customer saving $20,000 who runs three endpoints in permanent shadow keeps only ~$16,000, which is why the pricing floor exists at $12,000/yr and why shadow cost is surfaced per endpoint ([../tech/architecture/D09.md](../tech/architecture/D09.md)).
 
 **The line that must never be quoted without correction:** raw GPU rental understates true cost **3–5×** once engineering time is counted [S27], and a card idle at 10% utilisation costs **10× per token** [S27]. Both apply to CAMIR's own probe cost as much as to the customer's serving cost.
 

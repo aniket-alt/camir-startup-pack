@@ -17,7 +17,7 @@
 |---|---|---|---|---|
 | 1 | **Oracle ceiling** (M1) | Share of requests a perfect router resolves at a lower tier within tolerance | Above the disqualification threshold on ≥ 3 corpora. **Reported, never targeted** | E1, PR7 |
 | 2 | **Artifact share** (M3) | Ceiling with guard minus ceiling without, as a fraction of the gap to oracle | ≥ 5pp on ≥ 2 of 3 corpora. **This is the contribution** | E2, [S5] |
-| 3 | **f2** — share of a team's production tokens on self-hosted weights | From screening question S2 | Median ≥ 25% across ≥ 8 qualified | E4, [G1] |
+| 3 | **f2** — share of a team's production tokens on self-hosted weights | From screening question S2 | Recorded for all 20 calls; ≥ 6 of 20 qualify on E4's definition | E4, [G1] |
 | 4 | **Never-measured rate** | Qualified teams who have never measured their small tier's ceiling | ≥ 12 of 15 | Q6 |
 | 5 | **Veto incidence** | Qualified teams reporting a consuming team blocking a shared-service change | ≥ 7 of 15 | E13 |
 

@@ -164,3 +164,5 @@ Ranked by evidence, not by size.
 3. **Re-run this whole table after the first measured frontier.** R4 descends from the 25% savings assumption [G2]; if that number is 15%, the Y1–Y3 rows are wrong by 40% and the repricing trigger fires three years earlier than modelled.
 
 <!-- critic: unresolved — Product 2's demand is reasoned from the mechanism, not observed: no customer, prospect or public source has asked for measured cache-threshold or quantisation decisions. It carries the majority of terminal ARR in this build, and it is the single least-evidenced load-bearing claim in the financial layer. It is flagged as an assumption in three places above rather than resolved, because resolving it requires discovery this run has not done. -->
+
+<!-- critic: round 1 recorded 2026-09-10 in ../audit/CRITIC_LOG.md — 3 major, 1 minor fixed. Round 0 (commit 712241c) edits were retained but left no verdict record. -->

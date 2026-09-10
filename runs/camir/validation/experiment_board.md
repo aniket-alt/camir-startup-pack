@@ -25,7 +25,7 @@ These four can start on **2026-09-14** with three founders, one GPU allocation, 
 | **Learning** | — |
 | **Decision** | On FAIL: publish the null result and stop. On AMBER: proceed only if E2 lifts the ceiling above 55%. |
 
-### E2 — Artefact-controlled re-measurement · assumption A13, and the founder edge · rank 14
+### E2 — Artefact-controlled re-measurement · the harness thesis (rank 1b) and A13 (rank 14)
 
 | | |
 |---|---|
@@ -128,7 +128,7 @@ These four can start on **2026-09-14** with three founders, one GPU allocation, 
 
 | | |
 |---|---|
-| **Hypothesis** | Across three enforced deployments, **zero** consuming teams escalate to revert routing within two weeks of enforcement at a declared tolerance. |
+| **Hypothesis** | Across three enforced deployments, **every** escalation by a consuming team in the first two weeks of enforcement is answered with per-request attribution within one hour and closed with a recorded decision — resume, loosen, or stay pinned. |
 | **Design** | Enforcement follows 2–4 weeks of shadow mode in which the consuming team has already seen its own endpoint's numbers. The P0 set is live: per-endpoint tolerance the consuming team owns, tier stamped on every trace, unilateral pin-to-large requiring no ticket. Log every escalation, every pin event, and the elapsed time from a quality question being raised to it being answered with data. |
 | **Threshold** | **PASS**: every pin/revert is safe, acknowledged, traceable within **1 hour**, and the team resumes or rejects routing with a recorded reason. **FAIL**: an unacknowledged breach, missing attribution, or inability to recover; a veto itself is a promised safety control, not automatic evidence that P0 failed. |
 | **Why this is on the board at all** | The public precedent is one-sided: when routing shipped with a vendor-set tolerance and no dial, users reported degradation on complex queries immediately [S20][S21]. That the *absence* of a dial causes escalation is evidenced. That the *presence* of one prevents it is assumed. |
@@ -201,7 +201,7 @@ These four can start on **2026-09-14** with three founders, one GPU allocation, 
                                KILL GATE 3 (A4: will anyone pay)
 ```
 
-**Nothing downstream of Kill Gate 1 or Kill Gate 2 is worth starting until both are passed.** Both are resolved by mid-October 2026 for roughly $300 and sixty hours of conversation.
+**Nothing downstream of Kill Gate 1 or Kill Gate 2 is worth starting until both are passed.** Both are resolved by mid-October 2026 for ~120 metered GPU-hours (≈ $300–450 at [S26] rates, on the node budgeted in [../financials/use_of_funds.md](../financials/use_of_funds.md) Block 1) and sixty hours of conversation.
 
 ---
 
@@ -223,6 +223,8 @@ The board is only honest if the team can execute it. Three founders, part-time, 
 
 ## Recommended next 3
 
-1. **Start E1 and E4 on 2026-09-14, in parallel.** Kill Gate 1 and Kill Gate 2 both resolve by mid-October for about $300 and sixty hours. Nothing else on this board deserves attention until they do.
+1. **Start E1 and E4 on 2026-09-14, in parallel.** Kill Gate 1 and Kill Gate 2 both resolve by mid-October for ~120 GPU-hours and sixty hours of conversation. Nothing else on this board deserves attention until they do.
 2. **Open E6 on 2026-09-15.** It is the only experiment whose clock belongs to someone else, and a rejection in December costs far less than a rejection in June.
 3. **Pre-register E1 and E2 publicly before running them** — the prompt set, the judging protocol, the cost axis, and both thresholds. The field's own critique is that router evaluations are not comparable across papers [S13]; a pre-registered protocol is a cheap, credible answer to that and it removes the team's ability to move its own goalposts.
+
+<!-- critic: round 1 recorded 2026-09-10 in ../audit/CRITIC_LOG.md — 2 major, 1 minor fixed. Round 0 (commit 712241c) edits were retained but left no verdict record. -->

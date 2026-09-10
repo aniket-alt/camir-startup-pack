@@ -70,7 +70,7 @@ These are why the deployment is still live in month three. All four of Ravi's re
 **Visible moment.** 11:40 on a Tuesday, Ravi sets `pin=large` on his endpoint. At 11:40:02 the next request goes large. The pin is stamped on the trace, so the dashboard shows the pin, the reason field, and who set it. **Pin rate rising is a product failure and the dashboard says so** — metric M11.
 
 ### F11 — Tolerance Breach Alert with Auto-Revert
-**Mechanism.** Continuous measured quality per endpoint against its declared tolerance; a crossing pages the tolerance owner and, if configured, reverts that endpoint to the fixed-model baseline automatically. A quality drop with no alert is classified as a P0 defect.
+**Mechanism.** Continuous measured quality per endpoint against its declared tolerance; a crossing reverts that endpoint to the fixed-model baseline automatically and then pages the tolerance owner. **Auto-revert is on by default**; the owner may disable it for their own endpoint, never for anyone else's. A quality drop with no alert is classified as a P0 defect.
 **Principle.** PR4.
 **Visible moment.** Priya, who tunes nothing, gets one alert in six months: *"faq-endpoint crossed its tolerance at 03:12; reverted to 70B; 41 requests affected; here they are."* Her stated objection — *"I find out from a support ticket, not from a dashboard"* — is answered in the product.
 
@@ -154,3 +154,5 @@ Break any link and the rest degrades to something free: without F18 the frontier
 1. **Build F5 → F1 → F4 → F2 as one release and ship nothing else.** Four features, one deliverable: a customer learns in under a week whether routing can help them, and CAMIR learns M3 — the artifact share of the apparent ceiling — which is the publishable contribution regardless of what the router does.
 2. **Refuse to build F16 until F14 exists and is measured.** The ablation is meaningless without its baseline, and building the classifier first is the single most likely way this team spends year one on the ~2.13 percentage points [S4] says are available.
 3. **Treat F8 and F10 as a single indivisible unit with F13.** Shipping a routing decision without per-request attribution and a unilateral off switch is the GPT-5 rollout [S20][S21], and it fails in the same documented way. If the schedule forces a cut, cut F16, not F10.
+
+<!-- critic: round 1 recorded 2026-09-10 in ../audit/CRITIC_LOG.md — 2 major, 3 minor fixed. Round 0 (commit 712241c) edits were retained but left no verdict record. -->

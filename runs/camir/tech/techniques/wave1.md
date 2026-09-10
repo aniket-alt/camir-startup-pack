@@ -70,7 +70,7 @@ Deferral requires a confidence score that means what it says. Every technique in
 
 | # | Technique | Mechanism | Evidence anchor |
 |---|---|---|---|
-| W1-12 | **Temperature scaling** | One scalar divides the logits, fit on held-out data by NLL; the standard post-hoc fix, and the one that preserves the argmax so it can never change a routing *decision*, only its confidence. | Guo et al. (2017) |
+| W1-12 | **Temperature scaling** | One scalar divides the logits, fit on held-out data by NLL; the standard post-hoc fix. It preserves each request's argmax, so it never changes the *answer* — but a routing decision is a threshold on confidence, so rescaling moves requests across a fixed τ, and for multi-class max-softmax it can reorder requests. **τ must be refit after calibration, never carried over.** | Guo et al. (2017) |
 | W1-13 | **Platt scaling** | Fit a logistic map from raw score to probability — used when the score is a scorer output (W1-4) rather than a softmax. | Platt (1999) |
 | W1-14 | **Isotonic regression calibration** | Non-parametric monotone fit; more flexible than Platt, needs more held-out data, and is the right choice once a deployment has real routing history. | Zadrozny–Elkan |
 | W1-15 | **Reliability diagrams + ECE / adaptive-ECE** | Bin predictions by confidence and plot observed accuracy against it; the number that tells an operator whether τ means anything. | Expected calibration error, Naeini et al. |
@@ -85,7 +85,7 @@ Deferral requires a confidence score that means what it says. Every technique in
 | # | Technique | Mechanism | Evidence anchor |
 |---|---|---|---|
 | W1-17 | **Maximum softmax probability** | Maximum token probability, evaluated as a candidate signal rather than a calibrated probability of answer correctness; the cheapest escalation baseline when the backend exposes logprobs. | [S8] |
-| W1-18 | **Margin sampling** | Top-1 minus top-2 probability; separates "confident" from "one of two plausible answers", which MSP conflates. | [S8] |
+| W1-18 | **Top-2 margin** | Top-1 minus top-2 probability (the score behind active learning's "margin sampling"); separates "confident" from "one of two plausible answers", which MSP conflates. | [S8] |
 | W1-19 | **Predictive entropy** | Entropy of the output distribution; sensitive to diffuse uncertainty across many options rather than a single rival. | [S8] |
 | W1-20 | **Distance-to-uniform** | How far the distribution sits from maximum ignorance; robust when vocabulary size makes entropy hard to threshold across tasks. | [S8] |
 | W1-21 | **Length-normalised sequence log-likelihood** | Mean token log-prob over the generated answer, correcting the bias that makes long answers look uncertain. | Standard sequence scoring |
@@ -100,11 +100,11 @@ The nearest published comparator family [S1][S2]. All five are *classifier-route
 
 | # | Technique | Mechanism | Evidence anchor |
 |---|---|---|---|
-| W1-24 | **Bradley–Terry win-probability router** | Fit a win model over preference pairs and route by predicted probability the small tier wins; the routing decision becomes a threshold on that probability. | RouteLLM [S1][S2] |
+| W1-24 | **Bradley–Terry win-probability model** | Fit a win model over preference pairs and route by predicted probability the small tier wins; the routing decision becomes a threshold on that probability. In RouteLLM it is the preference model inside the similarity-weighted router (W1-28), not a separately benchmarked fifth router. | RouteLLM [S2] |
 | W1-25 | **Matrix factorisation router** | Factor the `query × model` preference matrix into latent factors and score unseen pairs — **$3.32 per million requests** to serve [S1]. | [S1] |
 | W1-26 | **Causal-LLM router** | Fine-tune a small generative model to emit the win probability directly — **$5.23 per million requests** [S1]. | [S1] |
 | W1-27 | **BERT-classifier router** | Encoder classifier over the raw prompt — the cheapest of RouteLLM's four at **$3.19 per million requests** [S1]. | [S1] |
-| W1-28 | **Similarity-weighted ranking router** | Weight training-set preferences by embedding similarity to the incoming query — most accurate of the four, most expensive to serve at **$39.26 per million requests** [S1]. | [S1] |
+| W1-28 | **Similarity-weighted ranking router** | Weight training-set preferences by embedding similarity to the incoming query, fitting a Bradley–Terry model (W1-24) on the weighted set — the most expensive of the four to serve at **$39.26 per million requests** [S1]. [S1] is cited for serving cost only; it does not license an accuracy ranking among the four. | [S1] |
 
 **The number discipline that applies to this whole cluster.** RouteLLM's CPT is **3.66× on MT-Bench, 1.41× on MMLU, 1.49× on GSM8K** [S2]. The headline holds only on the most conversational benchmark. Any CAMIR artifact quoting a multiple without its benchmark is misleading.
 
@@ -114,7 +114,7 @@ The nearest published comparator family [S1][S2]. All five are *classifier-route
 
 | # | Technique | Mechanism | Evidence anchor |
 |---|---|---|---|
-| W1-29 | **kNN routing over query embeddings** | Route by the observed tier outcomes of the *k* nearest historical requests — the cheap baseline CAMIR must beat, and the one that improves automatically as per-deployment history accumulates. | [S4][S6] |
+| W1-29 | **kNN routing over query embeddings** | Route by the observed tier outcomes of the *k* nearest historical requests — the cheapest classifier-route baseline, and the one that improves automatically as per-deployment history accumulates. (The bar CAMIR's classifier must clear is still calibrated confidence, cluster D — not kNN.) | [S4][S6] |
 | W1-30 | **Cluster-prototype routing** | k-means the embedding space offline, assign a tier per cluster, route by nearest centroid; O(1) at request time and inspectable by an operator. | [S6] |
 | W1-31 | **Semantic cache as a zeroth stage** | Vector-similarity lookup that answers before any tier runs; production hit rates **20–45%** [S36]. Composes with routing but **takes the easy traffic first**, so it is a technique CAMIR must model rather than one it can ignore. | [S35][S36][S37] |
 
@@ -192,3 +192,5 @@ Stated because a catalog that lists only what it has is a brochure.
 3. **Make W1-47 the headline chart, not the frontier.** The difficulty stratification answers the walk-away question ("is the traffic bimodal?") in week one; the frontier only answers it in month three.
 
 <!-- critic: unresolved — none. Round-2 minor issue logged and accepted: cluster G (surface heuristics) mixes "techniques CAMIR uses" with "techniques CAMIR teardowns"; kept in one cluster deliberately because splitting them would imply the pre-filter use is endorsed rather than tolerated. -->
+
+<!-- critic: round 1 recorded 2026-09-10 in ../../audit/CRITIC_LOG.md — 1 major, 4 minor fixed. Round 0 (commit 712241c) edits were retained but left no verdict record. -->

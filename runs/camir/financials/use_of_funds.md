@@ -33,11 +33,11 @@ The cheapest information available anywhere in the plan.
 | Spend | Amount | Buys |
 |---|---|---|
 | Two engineers, 4 months | $180,000 | The low-fidelity MVP: corpus builder, oracle ceiling probe, artifact guard, judge harness, frontier builder, disqualification report |
-| **GPU time for the measurement track** | **$45,000** | ≥ 3 realistic mixed-traffic corpora × ≥ 3 tiers, exhaustively — the only irreducible cost in this block |
+| **GPU capacity for the measurement track** | **$45,000** | A dedicated multi-GPU node for ~2 months, so a 70B-class tier can stay resident alongside the small and mid tiers. E1 itself meters only ~120 GPU-hours (≈ $300–450 at [S26] rates); the node also carries E2, E3, E12, re-runs on ≥ 3 corpora, and the published reference `frontier_run`. Renting capacity rather than metered hours is the choice that keeps the track on schedule `(assumption: ~$2.50–3.75/GPU-hr [S26], 8 GPUs)` |
 | Founder time on 20 discovery screens | $40,000 | f2, the never-measured rate, veto incidence |
 | Legal, entity, licence commitment | $15,000 | The open-core boundary published **before** first release [S23] |
 
-**Milestone: Gate 1** — ceiling above the disqualification threshold on ≥ 3 corpora, artifact share ≥ 5pp on ≥ 2, ≥ 8 of 20 screened qualify, ≥ 7 of 15 report a real veto.
+**Milestone: Gate 1** — ceiling above the disqualification threshold on ≥ 3 corpora, artifact share ≥ 5pp on ≥ 2, ≥ 6 of 20 screened qualify on E4's definition, ≥ 7 of 15 report a real veto.
 
 **Kill condition:** ceiling below threshold → **publish the negative result and stop.** It is genuinely publishable — [G2] records that no routing savings have ever been published for a self-hosted open-weight pool, so the null is a contribution. That is what makes stopping a defensible professional outcome rather than a failure, and it is the reason this block is first.
 

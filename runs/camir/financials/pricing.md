@@ -138,3 +138,5 @@ That is not a fallback, it is the bridge to the second product in [revenue_build
 3. **Re-derive this entire file the day the first self-hosted frontier is measured.** Every number here descends from the 25% savings assumption [G2]. If the oracle ceiling comes in low, the ACV is not $30k and the tier design is wrong, not just the price.
 
 <!-- critic: unresolved — the 28% share rate has no published comparable at any specificity; [S38][S39] establish only that share-of-savings pricing exists and that rates are private. The number is defensible as "inside the band" only by inference. It should be treated as the first thing a discovery call tests, not as a derived figure. -->
+
+<!-- critic: round 1 recorded 2026-09-10 in ../audit/CRITIC_LOG.md — 1 minor fixed, 1 logged. Round 0 (commit 712241c) edits were retained but left no verdict record. -->
