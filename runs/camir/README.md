@@ -2,46 +2,46 @@
 
 CAMIR routes each LLM request to the smallest model tier predicted to answer it correctly, cutting inference spend without crossing a declared quality tolerance — on a self-hosted model pool a team can actually run. Two routing strategies are evaluated against each other rather than assumed: a **classifier route** that predicts difficulty before generation, and a **cascade route** that tries the small tier first and escalates on low confidence. The deliverable is not a point claim but a published, reproducible **cost-quality frontier**, against which a team sets its own quality tolerance. Origin: SJSU CMPE 295A master's capstone, September 2026. No revenue, no pilot customer, no traction, no completed benchmark run.
 
-**Status:** `PARTIAL` · generated 2026-09-09 → 2026-09-10 · run slug `camir` · **29/61 required artifacts · 0 visuals rendered**
+**Status:** `COMPLETE` · generated 2026-09-10 · run slug `camir` · **61/61 required artifacts · 9 HTML infographics · 0 PNGs rendered**
 
-> This run is mid-pipeline and was handed between agent sessions. **[HANDOFF.md](HANDOFF.md) carries the resume instructions and the locked decisions** that constrain every remaining artifact. Row-by-row status lands in `audit/COVERAGE.md` when phase 9 runs.
+> This is a pre-traction SJSU CMPE 295A capstone pack. **[HANDOFF.md](HANDOFF.md) carries the locked decisions** that constrain every artifact; [audit/COVERAGE.md](audit/COVERAGE.md) records row-by-row coverage.
 
 ## Start here
 
-The narrative layer (one-pager, deck, VC memo) has not been generated yet, so the 60-second path runs through the source documents:
+The 60-second path moves from claim to mechanism to evidence:
 
-1. **[BRIEF.md](BRIEF.md)** — problem, users, mechanism, moat, business model, riskiest assumption, and the vocabulary every artifact uses.
-2. **[tech/whitepaper.md](tech/whitepaper.md)** — the mechanism arithmetic: where the money is lost today and what removes each friction.
-3. **[research/survey.md](research/survey.md)** — the science, including §6.2, the evidence *against* CAMIR's core mechanism, stated at full strength.
+1. **[narrative/one_pager.md](narrative/one_pager.md)** — the claim, mechanism and commercial boundary in one page.
+2. **[narrative/pitch_deck.md](narrative/pitch_deck.md)** — the investor arc, with every slide title as a claim.
+3. **[tech/whitepaper.md](tech/whitepaper.md)** — the cost arithmetic and the evidence against borrowed routing headlines.
 
 ## Reading paths by audience
 
-**Investor** → [strategy/market_type.md](strategy/market_type.md) (why this is a re-segmented market, and the post-mortem it must survive) → [strategy/positioning.md](strategy/positioning.md) (the two axes, and why the obvious ones are wrong) → [strategy/market_sizing.md](strategy/market_sizing.md) (the uncomfortable number, stated first) → [financials/pricing.md](financials/pricing.md) → [financials/revenue_build.md](financials/revenue_build.md).
+**Investor** → [narrative/vc_memo.md](narrative/vc_memo.md) (teardown and risks) → [strategy/market_sizing.md](strategy/market_sizing.md) (routing ceiling) → [financials/pricing.md](financials/pricing.md) (price hypothesis) → [financials/revenue_build.md](financials/revenue_build.md) (conditional expansion).
 
-**Engineer** → [tech/whitepaper.md](tech/whitepaper.md) → [product/PRD.md](product/PRD.md) (the Classify → Dispatch → Judge → Attribute → Recalibrate loop and its named components) → [tech/techniques/wave1.md](tech/techniques/wave1.md) → [research/capability_table.md](research/capability_table.md) (what is and is not possible today).
+**Engineer** → [product/PRD.md](product/PRD.md) (the Classify → Dispatch → Judge → Attribute → Recalibrate loop) → [tech/whitepaper.md](tech/whitepaper.md) → [tech/architecture/00_INDEX.md](tech/architecture/00_INDEX.md) → [tech/techniques/wave1.md](tech/techniques/wave1.md).
 
-**Operator** → [strategy/personas.md](strategy/personas.md) (six personas; read P5 Ravi first — he can veto and is in no sales conversation) → [strategy/gtm.md](strategy/gtm.md) → [strategy/channel_plan.md](strategy/channel_plan.md) (channel economics that reject three conventional channels) → [strategy/sales_roadmap.md](strategy/sales_roadmap.md).
+**Operator** → [product/journeys/day_in_life.md](product/journeys/day_in_life.md) (Marcus, Ravi and Dana in one day) → [strategy/personas.md](strategy/personas.md) → [strategy/channel_plan.md](strategy/channel_plan.md) → [strategy/sales_roadmap.md](strategy/sales_roadmap.md).
 
-**Skeptic** → [ASSUMPTIONS.md](ASSUMPTIONS.md) §Tier 1 → [research/survey.md](research/survey.md) §6.2 → [validation/riskiest_assumptions.md](validation/riskiest_assumptions.md) → [research/sources.md](research/sources.md) §Gaps.
+**Skeptic** → [validation/riskiest_assumptions.md](validation/riskiest_assumptions.md) → [validation/experiment_board.md](validation/experiment_board.md) → [research/sources.md](research/sources.md) §Gaps → [audit/COVERAGE.md](audit/COVERAGE.md).
 
 ## Full artifact map
 
 | Path | What it holds | Files | Owning skill |
 |---|---|---|---|
-| `./` | Brief, assumptions, handoff, this front door | 4 | grill-me / startup-audit |
+| `./` | Brief, assumptions, work order, handoff and this front door | 5 | grill-me / startup-audit |
 | [`research/`](research/) | Landscape, competitor teardown, capability table, survey, 40 sources | 5 | startup-research |
 | [`strategy/`](strategy/) | Market type, positioning, sizing, personas, both canvases, GTM, petal, channel economics, sales roadmap | 11 | startup-strategy |
-| [`product/`](product/) | PRD, 20 flagship features, 50 prioritised features | 3 | startup-product |
-| [`tech/`](tech/) | Whitepaper, three technique waves | 4 | startup-tech |
-| [`validation/`](validation/) | Riskiest assumptions, experiment board | 2 | startup-validation |
-| [`financials/`](financials/) | Pricing, revenue build | 2 | startup-financials |
-| `narrative/` | *not yet generated* | 0 | startup-narrative |
-| `visuals/` | *not yet generated* | 0 | startup-visuals |
-| `audit/` | *not yet generated* | 0 | startup-audit |
+| [`product/`](product/) | PRD, features, journeys and UX spec | 8 | startup-product |
+| [`tech/`](tech/) | Whitepaper, deep dives, architecture and techniques | 19 | startup-tech |
+| [`validation/`](validation/) | Assumptions, experiments, discovery, metrics and gates | 9 | startup-validation |
+| [`financials/`](financials/) | Pricing, revenue, unit economics, funds, risks and comps | 6 | startup-financials |
+| [`narrative/`](narrative/) | One-pager, memo, deck, future press, founder story, mission | 6 | startup-narrative |
+| [`visuals/`](visuals/) | Manifest, prompts, builders, indexes and 9 HTML infographics | 16 | startup-visuals |
+| [`audit/`](audit/) | Coverage audit | 1 | startup-audit |
 
 ## Visual index
 
-Empty — phase 8 has not run. No text-to-image capability was available in the generating sessions; the HTML infographics that carry this pack's data are still to be built.
+HTML infographics: [V04 artifact ceiling](visuals/infographics/V04_artifact-controlled-oracle.html), [V05 qualification](visuals/infographics/V05_qualify-measure-disqualify.html), [V07 Ravi control](visuals/infographics/V07_ravi-control-path.html), [V09 ACV](visuals/infographics/V09_acv-open-core.html), [V10 Product 1/Product 2](visuals/infographics/V10_product1-product2.html), [V14 validation gates](visuals/infographics/V14_three-gates.html), [V15 feature priority](visuals/infographics/V15_feature-priority.html), [V17 technique matrix](visuals/infographics/V17_technique-feature-matrix.html), [V18 experiment gates](visuals/infographics/V18_experiment-gates.html). Mermaid visuals remain live in their source artifacts. No PNGs are embedded because no text-to-image tool is available; A52 remains pending-image.
 
 ## Top 5 sharpest claims
 
@@ -53,6 +53,6 @@ Empty — phase 8 has not run. No text-to-image capability was available in the 
 
 ## Completeness
 
-`PARTIAL`. Phases 0–2 are complete (brief, research, strategy). Phases 3, 4, 6 and 7 are partially generated — a parallel agent swarm was interrupted by an API session limit, and the salvaged artifacts are listed in the map above. Phases 5, 8, 9 and 10 have not started. Nine of the phase 3–7 artifacts are unreviewed drafts awaiting a `startup-critic` pass.
+`COMPLETE` for the 61 required artifact units. The pack is still pre-traction: oracle ceiling, customer segment, price, channel acceptance and Product 2 demand remain planned assumptions, not observed results. Nine HTML infographics and live Mermaid sources cover the textual visual layer; PNG rows are honestly pending because no image tool is available. Website rows A56/A57 remain optional and intentionally not started because GitHub Pages would expose repository contents and founder consent was not given. See [audit/COVERAGE.md](audit/COVERAGE.md) for row-by-row status.
 
-Full resume instructions, the binding locked decisions, and the exact remaining draw order are in **[HANDOFF.md](HANDOFF.md)**. Row-by-row manifest status will live in `audit/COVERAGE.md` once phase 9 runs.
+The binding locked decisions remain in **[HANDOFF.md](HANDOFF.md)**. The website is deliberately disabled.
