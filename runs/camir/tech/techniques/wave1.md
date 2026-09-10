@@ -54,7 +54,7 @@ The formal theory of a predictor allowed to say "not me". This is what a deferra
 
 | # | Technique | Mechanism | Evidence anchor |
 |---|---|---|---|
-| W1-7 | **Rejection learning (Chow's rule)** | Under a fixed cost of rejection, the risk-optimal reject region is exactly `max posterior < 1 − c`; the classical result that a threshold on confidence *is* the optimal deferral rule when confidence is calibrated. | Chow (1970), reject option |
+| W1-7 | **Rejection learning (Chow's rule)** | Under a fixed cost of rejection and calibrated class posteriors, the classical risk-optimal reject region is `max posterior < 1 − c`; CAMIR treats this as a bounded analogy, not an unqualified correctness rule for free-form generation. | Chow (1970), reject option |
 | W1-8 | **Risk–coverage curves** | Plot error rate against the fraction of requests answered without deferral; the selective-prediction analogue of CAMIR's frontier and the correct way to compare two escalation rules. | Selective prediction / El-Yaniv–Wiener |
 | W1-9 | **Learning to defer to an expert** | Train the small tier's deferral head *jointly with knowledge of the large tier's competence*, so it defers where the large tier actually helps — not merely where it is itself unsure. | Madras et al.; Mozannar–Sontag consistent surrogate loss |
 | W1-10 | **Cost-sensitive deferral with asymmetric errors** | Weight a wrong cheap answer against a needless escalation separately, because in CAMIR they cost different things: quality-tolerance breach vs. money. | Cost-sensitive learning; `(assumption: the weights are a per-endpoint policy choice, untested)` |
@@ -84,12 +84,12 @@ Deferral requires a confidence score that means what it says. Every technique in
 
 | # | Technique | Mechanism | Evidence anchor |
 |---|---|---|---|
-| W1-17 | **Maximum softmax probability** | Confidence = probability of the chosen token/answer; the cheapest possible escalation signal. | [S8] |
+| W1-17 | **Maximum softmax probability** | Maximum token probability, evaluated as a candidate signal rather than a calibrated probability of answer correctness; the cheapest escalation baseline when the backend exposes logprobs. | [S8] |
 | W1-18 | **Margin sampling** | Top-1 minus top-2 probability; separates "confident" from "one of two plausible answers", which MSP conflates. | [S8] |
 | W1-19 | **Predictive entropy** | Entropy of the output distribution; sensitive to diffuse uncertainty across many options rather than a single rival. | [S8] |
 | W1-20 | **Distance-to-uniform** | How far the distribution sits from maximum ignorance; robust when vocabulary size makes entropy hard to threshold across tasks. | [S8] |
 | W1-21 | **Length-normalised sequence log-likelihood** | Mean token log-prob over the generated answer, correcting the bias that makes long answers look uncertain. | Standard sequence scoring |
-| W1-22 | **Self-consistency agreement rate** | Sample *k* answers at temperature > 0; the agreement fraction is a confidence estimate that needs no logits — the only measure in this cluster available through a black-box endpoint. | Wang et al., self-consistency |
+| W1-22 | **Self-consistency agreement rate** | Sample *k* answers at temperature > 0 in an explicitly costed offline or opt-in arm; agreement is a candidate signal, not proof of correctness, and conflicts with the temperature-zero judging protocol if used unpriced in production. | Wang et al., self-consistency |
 | W1-23 | **Semantic entropy** | Cluster the *k* samples by meaning-equivalence, then take entropy over clusters — so five phrasings of one right answer read as confident, which token entropy does not. | Kuhn et al.; Farquhar et al. (2024) |
 
 ---
@@ -155,7 +155,7 @@ Preferred over LLM-as-judge wherever the task admits it, because the judge is th
 |---|---|---|---|
 | W1-39 | **Exact-match / normalised string match** | Deterministic correctness on multiple-choice and short-answer items; zero judge variance. | RouterBench's knowledge and commonsense datasets [S7] |
 | W1-40 | **Programmatic unit-test execution** | Run the generated code against tests — pass@1 as ground truth on HumanEval / MBPP. | [S5][S7] |
-| W1-41 | **Grammar-constrained decoding** | Force the output to a schema so the answer is always extractable, removing the **5–12% parse failures on MMLU** [S5] at their source rather than post-hoc. | [S5] |
+| W1-41 | **Grammar-constrained decoding** | For tasks with a supported formal schema and backend, constrain output so it is extractable; it cannot remove parse failures for unconstrained prose, so unsupported cases fall back to counted parsing. | [S5] |
 | W1-42 | **Schema extraction with explicit parse-failure counting** | Where constrained decoding is not available, extract with a strict parser and **count and publish the failures** instead of scoring them as wrong. | [S5] |
 
 **This cluster is the founder edge in operational form.** [S5]'s finding — that much of measured unsolvability is instrumentation, across 206,000 query-model pairs — is only exploitable by a team that instruments first.

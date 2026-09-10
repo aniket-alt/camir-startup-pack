@@ -41,7 +41,7 @@ A fixed-model policy states no quality tolerance at all. Marcus picked the 70B o
 
 When a team *does* measure, it measures against its own harness, and 2026 audited what those harnesses do. Truncation under fixed generation budgets affected **65% of MMLU and 57% of MedQA cases**; output-format mismatch caused **5–12% parse failures on MMLU**; judges are biased toward verbosity over correctness — across **206,000 query-model pairs** on Gemma 4 and Llama 3.1 families [S5]. Independently: judge test-retest same-verdict rates are **>95% at temperature 0 but ~70% at temperature 1**, position bias produces **~40% GPT-4 inconsistency**, verbosity bias inflates by **~15%** [S34]. Inter-judge agreement is only **~76%**, so judge *choice* may damage validity more than judge randomness [S33].
 
-**Why it is one-directional, and therefore compounding.** Truncation, parse failure and verbosity bias all penalise the *terser, smaller* tier. A broken harness does not add noise symmetrically; it systematically understates `p`, which makes routing look less valuable than it is, which discourages the measurement that would have found the error.
+**Direction is a hypothesis, not a theorem.** Truncation, parse failure and verbosity bias can affect tiers differently by task, format and response style. CAMIR therefore reports each artifact by tier and task; it does not assume that harness repair increases the small tier's production correctness.
 
 **Carried forward:** harness-repair recovery `h` = 0.03 / 0.06 / 0.12 of traffic reclassified from "small fails" to "small succeeds" `(assumption: anchored on the most conservative single artifact in [S5] — the 5–12% MMLU parse-failure band — and deliberately ignoring the truncation and verbosity findings, which are larger)`.
 
@@ -97,7 +97,8 @@ Notation. Costs are normalised to the large tier: `c_l = 1`. Tier cost ratio `r 
 **The arithmetic, which is exact rather than estimated:**
 
 ```
-cost_cascade / cost_baseline  =  r + e          (e = escalation rate)
+cost_cascade / cost_baseline  =  c_small_attempt + c_gate + c_large_escalation
+                                (all terms measured in GPU-seconds per request)
 ```
 
 Two structural consequences fall straight out:
@@ -155,7 +156,7 @@ Worked, at `r = 0.15`, baseline accuracy `a_l = 0.85` `(assumption: illustrative
 
 **The arithmetic.** Harness repair reduces `e` (cascade) and raises the achievable `q` at fixed tolerance (classifier), by reclassifying `h` of traffic from "small fails" to "small succeeds":
 
-`e' = e − h`, so `uplift = (r + e) / (r + e − h)`.
+For a scenario-only upper bound, `e' = e − h`, so `uplift = (r + e) / (r + e − h)`. This is not a production-saving identity: artifact correction changes measured labels first. Realized routing savings require paired held-out labels and a measured escalation change.
 
 | `h` | at `r`=0.15, `e`=0.50 | uplift |
 |---|---|---|

@@ -21,7 +21,7 @@
 **$50M of ARR does not exist inside a $20M SAM.** No mix of conversion assumptions fixes that; the denominator has to change. Three things change it, and only the third is a decision rather than a hope:
 
 1. The denominator compounds at **~26% CAGR** [S24]. That is a 3.2× lift over five years — real, but it arrives regardless of what CAMIR does.
-2. **Hybrid pools** (A9): admitting hosted API models as an additional top tier widens the addressable population from self-hosters to anyone running mixed inference. Total hosted-API spend is ~$9.6B against ~$2.9B self-hosted [../strategy/market_sizing.md](../strategy/market_sizing.md), a **3.3× population widening**.
+2. **Hybrid pools** (A9): admitting hosted API models as an additional top tier widens the spend pool from self-hosters to some teams running mixed inference. Total hosted-API spend is ~$9.6B against ~$2.9B self-hosted [../strategy/market_sizing.md](../strategy/market_sizing.md), a **3.3× spend-pool ratio, not a company-count multiplier**; the reachable population must be re-derived separately.
 3. **A second product priced against total inference spend rather than routing savings.** This is the one that has to be named, and §Product 2 names it.
 
 ---
@@ -40,7 +40,7 @@
 | **Batch and utilisation policy** | Batch size, concurrency, when to consolidate onto fewer GPUs | Latency/quality cost of higher batching — and **an idle GPU at 10% utilisation costs 10× per token** [S27] | Serving engineers, by intuition |
 | **Model-upgrade regression** | Is the new pool member actually better on *our* traffic | Frontier movement across a pool change | Nobody. This is why internal routers go stale ([../strategy/petal_diagram.md](../strategy/petal_diagram.md), Petal 5) |
 
-**The unifying claim, stated as a claim:** all five decisions are the same measurement problem — *what does this change cost me in quality, on my traffic, judged by a protocol I can audit* — and a team that has bought CAMIR for the first has already installed the apparatus for the other four. `(assumption: no customer has asked for levers 2–5; this is reasoning from the mechanism, and the discovery script in` [../validation/discovery_guide.md](../validation/discovery_guide.md) `should test it before a line of code is written.)`
+**The unifying claim, stated as a hypothesis:** all five decisions share an auditable measurement pattern — *what does this change cost me in quality, on my traffic, judged by a protocol I can audit* — while latency, throughput, memory and operational constraints remain distinct per lever [S12]. A team that buys CAMIR for tier selection may already have the apparatus for the other four, but discovery must test that before code is written. `(assumption: no customer has asked for levers 2–5; see` [../validation/discovery_guide.md](../validation/discovery_guide.md) `.)`
 
 ### Why Product 2 must be priced differently
 
@@ -54,7 +54,7 @@ That change of metric is what breaks the $20M ceiling, and the reason is arithme
 |---|---|---|
 | Total self-hosted inference spend, 2026 | $2.9B | [../strategy/market_sizing.md](../strategy/market_sizing.md) line c, base case |
 | Grown at 26% CAGR to 2031 [S24] | **$9.2B** | ×3.18 |
-| Widened to hybrid pools (self-hosted + hosted, A9) | **$30.5B** | ×3.3 (b/c ratio, [../strategy/market_sizing.md](../strategy/market_sizing.md)) |
+| Widened to hybrid pools (self-hosted + hosted, A9) | **$30.5B spend pool scenario** | ×3.3 spend-pool ratio, not a company-count estimate ([../strategy/market_sizing.md](../strategy/market_sizing.md)) |
 | Control-plane take rate | ×1.5–2.5% | `(assumption: below OpenRouter's 5% gateway take` [S17] `because CAMIR is not in the request path for levers 2–5, and observability/FinOps layers typically price at low single digits of the spend they govern)` |
 | **Product 2 TAM, 2031** | **$460M–$760M** | self-hosted-only floor: **$140–230M** |
 
@@ -74,10 +74,10 @@ Units × conversion × price, per year. Year 1 = first year with a paid contract
 |---|---|---|---|
 | R1 | Gross logo churn, Y1–Y4 | **15%/yr** | `(assumption: deliberately high. Switching cost is low — CAMIR is a proxy, change the base URL and you are out; A6 says so in the founder's own words)` |
 | R2 | Gross logo churn, Y5+ | **12%/yr** | `(assumption: modest improvement once a signed savings definition and an attribution history exist; not the 5% an established infra vendor would assume)` |
-| R3 | Net revenue retention | **112–118%** | `(assumption: customer inference spend grows ~26%` [S24]`, savings rate per dollar compresses` [S29]`; the two partly cancel and the residual is the Product 2 attach)` |
+| R3 | Net revenue retention | **112–118% scenario range** | `(assumption: customer inference spend grows ~26%` [S24]`, savings rate per dollar compresses` [S29]`; cohort expansion, churn and Product 2 attach are not yet observed)` |
 | R4 | ACV Y1 | **$30,000** | [pricing.md](pricing.md) §The ACV arithmetic |
 | R5 | Reachable population, 2026 | **1,370**, growing 26%/yr | [../strategy/market_sizing.md](../strategy/market_sizing.md) |
-| R6 | Population widening on hybrid GA (Y5) | **×3.3** | b/c ratio, [../strategy/market_sizing.md](../strategy/market_sizing.md) |
+| R6 | Spend-pool widening on hybrid GA (Y5) | **×3.3 scenario** | hosted/self-hosted spend ratio, not a company-count estimate; [../strategy/market_sizing.md](../strategy/market_sizing.md) |
 | R7 | Blended CAC, Y1–Y3 | **~$5,400** (18% of ACV) | [../strategy/channel_plan.md](../strategy/channel_plan.md) blended across stacks A/B/C/D |
 
 ### The table

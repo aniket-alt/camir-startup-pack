@@ -9,7 +9,7 @@ Principles PR1–PR10: [PRD.md](PRD.md) §3. Personas P1–P6: [../strategy/pers
 
 ---
 
-## NOW — #1–18 · nothing routes a real request until all eighteen exist
+## NOW — #1–18 · first shippable slice and enforced-routing prerequisites
 
 **Boundary rule:** a feature is Now only if the **first enforced routing decision is unsafe or unmeasurable without it**. That is why attribution and the off switch sit above the classifier.
 
@@ -26,7 +26,7 @@ Principles PR1–PR10: [PRD.md](PRD.md) §3. Personas P1–P6: [../strategy/pers
 | 9 | **Non-nested tier report** (F6) | The request set where a smaller tier was right and a larger wrong [S3] | P2/P3: evidence routing is assignment, not controlled degradation | 7 | S | PR10 |
 | 10 | **Frontier builder** | Models as points, routes as curves, in a cost-quality plane [S7] | P2: he sees the exchange rate and picks the point himself | 6,7 | M | PR9 |
 | 11 | **Ingress proxy** (F17) | OpenAI-compatible endpoint; change a base URL, keep the client | P1: one environment variable, one restart, one afternoon | 2 | M | PR9 |
-| 12 | **Cascade route** (F13) | Small tier first; gate resolves or escalates. Observes an attempt instead of predicting one, sidestepping the predictability bottleneck [S4] | P2: savings that do not depend on difficulty being predictable | 11,13 | M | PR1, PR2 |
+| 12 | **Cascade route** (F13) | Small tier first; gate resolves or escalates. Observes an attempt rather than predicting one, but still depends on calibrated confidence and judge-validity checks [S4] | P2: savings with a post-generation signal | 11,13 | M | PR1, PR2 |
 | 13 | **Confidence gate + calibration fit** (F14) | Calibrated uncertainty threshold (max softmax / margin / entropy) fitted on held-out labels; versioned object. Simple confidence routes as well as trained routers [S8] | P2: the escalation rule is inspectable, not a magic constant | 3,7 | M | PR2, PR3 |
 | 14 | **Escalation-rate accounting + break-even** (F15) | Cascade cost decomposed into failed small attempt + gate + large answer; reports the escalation rate above which cascade costs more than always-large | P2: PR1's arithmetic, which FrugalGPT's 2023 hosted ratios no longer supply [S3][G2] | 12,6 | S | PR1 |
 | 15 | **Per-endpoint tolerance policy** (F7) | Append-only versioned object keyed by endpoint, required non-null `owner`, declared drop versus the fixed-model baseline, and the `frontier_run` it was set against | **P5: his name, his number, no ticket.** Also P4's "who checked, in writing" as a schema constraint | 10 | M | PR4 |

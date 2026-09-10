@@ -11,7 +11,7 @@
 
 ## The one decision
 
-**The value metric is a share of measured savings — ~28% — charged against the customer's existing inference bill.**
+**The value metric under test is a share of measured savings — 28% is a pricing hypothesis, not a validated rate — charged against the customer's existing inference bill.**
 
 The reason is not elegance. [../strategy/petal_diagram.md](../strategy/petal_diagram.md) examines five adjacent budgets and finds that **only one holds real, approved, transferable money: Petal 1, the inference spend itself.** Petal 2's gateway budget belongs to teams who chose *not* to self-host. Petal 3 is free software. Petal 4 is a pricing precedent, not a customer. Petal 5 is unbudgeted engineering time.
 
@@ -30,9 +30,9 @@ The single derivation everything downstream depends on. Change any line and reco
 | Beachhead customer's annual inference spend | **$600,000** | $50k/month, the beachhead profile in `../BRIEF.md` §Users and [../strategy/personas.md](../strategy/personas.md) P2 |
 | × share surviving upstream semantic caching (f4) | ×0.70 | `[sourced]` production cache hit rates **20–45%** [S36]; base case takes the midpoint of the loss |
 | = **Routable spend** | **$420,000** | Routing only ever prices cache-miss traffic [G4] |
-| × realised saving rate on routable spend | ×25% | `(assumption: conservative against RouteLLM's 1.41× on knowledge tasks and 1.49× on math` [S2]`; no CAMIR measurement exists` [G2]`)` |
+| × realised saving rate on routable spend | ×25% | `(assumption: independent CAMIR scenario; RouteLLM's hosted result [S2] is context only, not evidence for self-hosted savings; no CAMIR measurement exists [G2])` |
 | = **Measured annual saving** | **$105,000** | |
-| × CAMIR share of measured savings | ×28% | `(assumption: no universal rate is published by any share-of-savings vendor` [S38][S39]`; 28% sits inside the band those vendors are reported to negotiate)` |
+| × CAMIR share of measured savings | ×28% | `(assumption: untested price-discovery hypothesis; [S38][S39] establish private negotiation, not a public band)` |
 | = **ACV** | **≈ $29,400 → $30,000** | Matches [../strategy/market_sizing.md](../strategy/market_sizing.md) |
 
 **Note on f3.** [../strategy/market_sizing.md](../strategy/market_sizing.md) applies a second factor f3 (×0.70, share of spend above the volume floor) when sizing the *market*. It is deliberately **not** applied here: f3 is a population filter that decides which companies qualify, and the beachhead customer is by definition already above the floor of ~16M tokens/day [S27]. Applying it twice would understate ACV by 30%.
@@ -74,11 +74,11 @@ Three tiers, and the boundary between them is a commitment, not a packaging exer
 |---|---|---|---|---|
 | **Open** | P6 Sam, P1 Priya, every evaluator | Router, tier abstraction, **classifier route** and **cascade route**, benchmark harness, judging protocol, published frontiers, single-deployment observability | **$0, permanently** | Open-core conversion runs 1–5% of active users to hosted SaaS [S40]. The free base must be large or the paid layer has no funnel. Gating this is how the funnel dies |
 | **Control Plane** | P2 Marcus evaluates, P4 Dana signs | Per-deployment classifier training, quality-tolerance policy management, **savings measurement and attribution**, routing observability across deployments, continuous re-measurement on model upgrade, per-endpoint tolerance ownership for P5 Ravi | **28% of measured savings**, floor **$12,000/yr**, cap **$120,000/yr** | The data loop and the audit trail live here (A7). This is the only place switching cost can accumulate (A6) |
-| **Enterprise** | P3 Wen, multi-pool platform orgs | Bring-your-own judge certification, multi-pool and multi-tenant attribution, air-gapped deployment, contractual savings guarantee, named support | **Negotiated**, floor **$60,000/yr** | Enterprise open-source licences convert at 0.01–0.1% of active users at much higher value [S40]; this tier exists for the ten accounts that number implies, not as a growth engine |
+| **Enterprise** | P3 Wen, multi-pool platform orgs | Bring-your-own judge certification, customer-owned multi-pool attribution, air-gapped deployment, contractual savings guarantee, named support | **Negotiated**, floor **$60,000/yr** | Enterprise open-source licences convert at 0.01–0.1% of active users at much higher value [S40]; this tier exists for the ten accounts that number implies, not as a growth engine |
 
 ### Why a floor and why a cap
 
-**The floor at $12,000/yr** is not a packaging convenience — it is a margin requirement. [../strategy/business_model_canvas.md](../strategy/business_model_canvas.md) block 7 sets a kill threshold: **measurement cost exceeding 30% of ACV breaks the margin.** [unit_economics.md](unit_economics.md) computes fully-loaded per-customer cost of **~$8,800/yr at 68 customers**. A customer whose measured savings imply a fee below the floor is a customer CAMIR loses money serving. The floor is where that line sits, with a thin margin above it.
+**The floor at $12,000/yr** is a provisional margin hypothesis, not a buyer-validated threshold. [../strategy/business_model_canvas.md](../strategy/business_model_canvas.md) block 7 sets a kill threshold: **measurement cost exceeding 30% of ACV breaks the margin.** [unit_economics.md](unit_economics.md) computes fully-loaded per-customer cost of **~$8,800/yr at 68 customers**. A customer whose measured savings imply a fee below the floor may be uneconomic to serve; E8 must test whether the floor is compatible with the buyer's budget.
 
 **The cap at $120,000/yr** protects the customer, and therefore CAMIR. A share-of-savings contract with no cap on a customer whose spend grows 26% a year [S24] produces an invoice that eventually looks absurd relative to the work done, and the buyer cancels — this is the well-known failure mode of outcome pricing at scale. The cap corresponds to a customer spending ~$2.4M/yr on inference. Above it, the contract converts to the Enterprise tier's negotiated form, which is the honest way to reprice.
 

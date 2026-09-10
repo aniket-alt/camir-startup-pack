@@ -27,7 +27,7 @@ CAMIR is a cost-aware inference router for platform teams running LLM features a
 | **Attribute** | Price the request on the self-hosted cost axis, compute the fixed-model-baseline counterfactual, stamp the tier decision onto the caller's trace | cost meter, savings attributor, trace stamper | `savings_ledger` row; OpenTelemetry span attributes on the caller's own span |
 | **Recalibrate** | Detect frontier drift from model upgrades or traffic shift; retrain the classifier, re-fit the confidence threshold, re-plot the frontier, re-publish the ceiling | drift monitor, recalibration scheduler, frontier builder | `frontier_run` (dated, corpus-hashed, pool-manifest-pinned) |
 
-The loop closes because `judgment_record` labels are the classifier's training data and the confidence gate's calibration set. That is the compounding asset, and it is **per-deployment, not network-wide** — `../BRIEF.md` §Moat says so and this PRD does not improve on it.
+The loop closes because offline `judgment_record` labels can train the classifier and fit the confidence gate's calibration set. They are delayed, judge-dependent labels, so the training split, judge provenance and recalibration cadence must be recorded; they are **per-deployment, not network-wide** — `../BRIEF.md` §Moat says so and this PRD does not improve on it.
 
 ---
 
@@ -75,7 +75,7 @@ Ten principles, drawn from [../research/survey.md](../research/survey.md). **Rul
 
 | # | Goal | Done when |
 |---|---|---|
-| G1 | A team measures the oracle ceiling on **their own traffic** in under a week of wall-clock time on their own hardware | A `frontier_run` produced from a replay corpus of their logged requests, ceiling reported with and without evaluation artifacts (PR6) |
+| G1 | A team can test whether its oracle ceiling is measurable on **their own traffic** in under a week of wall-clock time on their own hardware | A `frontier_run` produced from a replay corpus of their logged requests, ceiling reported with and without evaluation artifacts (PR6); the time target is an experiment criterion, not a present product promise |
 | G2 | Routing deploys in a shared-infrastructure organisation **without the consuming engineer blocking it** | Per-endpoint tolerance owned by the consuming team, tier decision on every trace, pin-to-large in one flag, shadow mode before any enforcement |
 | G3 | A saving claim is **auditable by a party that is not CAMIR** | The counterfactual is computed by open-source code running inside the customer's perimeter, from records the customer holds |
 | G4 | The cascade route works when the classifier route does not | Cascade ships as primary; classifier ships as an ablation reported against calibrated confidence (PR3, PR5) |
@@ -180,7 +180,7 @@ The superset. Ranking, dependencies and effort live in [features_prioritized.md]
 
 ### How it compounds — and the honest limit
 
-`judgment_record` labels train the classifier and calibrate the gate. A deployment that has judged a million of its own requests routes that customer's traffic better than a cold start, and the `tolerance_policy` history is expensive to recreate because it encodes decisions people signed. **This is per-deployment, not network-wide.** CAMIR cannot pool labels across customers without moving prompts out of the perimeter, which N4 forbids. `../ASSUMPTIONS.md` A6 records that rising switching cost is untested; nothing in this PRD makes it less untested.
+`judgment_record` labels train the classifier and calibrate the gate. A deployment with a large, well-labeled request history may route that customer's traffic better than a cold start, and the `tolerance_policy` history may be expensive to recreate because it encodes decisions people signed. **This is per-deployment, not network-wide.** CAMIR cannot pool labels across customers without moving prompts out of the perimeter, which N4 forbids. `../ASSUMPTIONS.md` A6 records that rising switching cost is untested; nothing in this PRD makes it less untested.
 
 **What a funded copycat lacks after two years:** the accumulated per-customer routing history and the calibration living in it. Not the algorithm. `../BRIEF.md` says so and the PRD does not upgrade it.
 

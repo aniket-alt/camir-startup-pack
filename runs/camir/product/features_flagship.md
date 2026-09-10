@@ -16,7 +16,7 @@ These decide whether the customer should proceed at all. They ship first, becaus
 ### F1 — Oracle Ceiling Probe
 **Mechanism.** Runs every request in the pinned replay corpus through every tier in the pool manifest, judges each response under the forced protocol, and labels per request the set of tiers that answered correctly. The ceiling is the score achievable with perfect foreknowledge — the upper bound on every claim CAMIR could ever make.
 **Principle.** PR7, PR10.
-**Visible moment.** Marcus opens the Ceiling Report and reads one sentence: *"On 12,400 sampled requests, a perfect router resolves 61% at the 8B tier within your declared tolerance. Your fixed-model baseline resolves 0%. Everything CAMIR can do lives in that 61 points."* `(assumption: illustrative figure, no CAMIR run exists — see [G2])`
+**Visible moment.** Marcus opens the Ceiling Report and reads one sentence: *"On the sampled requests, a perfect router resolves a measured share at the 8B tier within your declared tolerance. Everything CAMIR can do lives below that ceiling."* `(assumption: illustrative wording; no CAMIR run exists — see [G2])`
 
 ### F2 — Disqualification Report
 **Mechanism.** If the gap between ceiling and fixed-model baseline is smaller than CAMIR's own operating cost for that deployment, the ceiling probe emits a **do-not-deploy** verdict with the difficulty histogram behind it, and refuses to generate a policy.
@@ -86,7 +86,7 @@ These are why the deployment is still live in month three. All four of Ravi's re
 Note the position. The router is the object under measurement, not the product [S11].
 
 ### F13 — Cascade Route (primary)
-**Mechanism.** Dispatch to the smallest tier; score the answer at the confidence gate; resolve or escalate. Robust to unpredictable difficulty because it observes an actual attempt rather than predicting one — it sidesteps the predictability bottleneck [S4] entirely.
+**Mechanism.** Dispatch to the smallest tier; score the answer at the confidence gate; resolve or escalate. It changes the signal available under unpredictable difficulty because it observes an actual attempt rather than predicting one; it does not remove calibration, judge validity or distribution-shift risk from the predictability bottleneck [S4]. Its break-even condition is measured escalation below the pool-specific threshold in F15.
 **Principle.** PR1, PR2.
 **Visible moment.** The route selector shows *Cascade (recommended)* with its measured curve, and *Classifier (ablation)* with its own, on the same axes. The recommendation is a measurement, not a default.
 
@@ -133,13 +133,13 @@ Note the position. The router is the object under measurement, not the product [
 
 ## The integration argument — why the loop, not any feature
 
-Every one of these twenty is individually buildable by a competent team in a fortnight. Wen says so herself: *"I could build this in three weeks."* She is right, and the answer is not to deny it.
+The first executable slice is F5 → F1 → F4 → F2, then F9/F10/F13 with a two-tier pool. The twenty-feature set is not a delivery promise: judging, tracing, recalibration and attribution need decomposition and measured effort. Wen says *"I could build this in three weeks"*; the credible response is to constrain the supported interfaces and ship the qualifying slice before expanding it.
 
 The power is that the loop closes, and it closes in exactly one place: **the labels.**
 
 1. **F18** produces `judgment_record` labels under a protocol strong enough that the labels mean something. Without PR8's protocol they are noise, and everything downstream inherits the noise.
 2. Those labels are what **F1** turns into an oracle ceiling — the denominator for every claim.
-3. The same labels **calibrate F14's gate** and **train F16's classifier**. A deployment that has judged a million of its own requests is genuinely calibrated where a cold start is not.
+3. The same labels **calibrate F14's gate** and **train F16's classifier**. A deployment with enough held-out, judge-reviewed history may be better calibrated than a cold start; the magnitude and data requirement are an experiment, not a premise.
 4. **F12** prices the outcome on **F3**'s axis, and because the ledger and the axis are open, the number is verifiable by the buyer's own engineer rather than asserted by the vendor.
 5. **F19** notices the pool moved, re-runs **F5**'s pinned corpus, and the loop starts again — which is the only defence against the silent decay of a policy set once.
 
