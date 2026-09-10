@@ -29,11 +29,19 @@ The routing mechanism is moving into serving engines [S11]. The defensible contr
 
 ## Commercial shape
 
-Open-core: router, tier abstraction, benchmark harness and published frontier remain open. The commercial control plane provides per-deployment tolerance management, savings measurement and attribution, and observability. The beachhead is a staff platform engineer managing roughly $50,000/month of inference spend (assumption: P2 profile), with a $30,000/year ACV scenario derived from $600,000 annual spend, 70% cache-miss traffic, 25% realized saving and a 28% tested pricing hypothesis (assumption: no CAMIR measurement or buyer validation; see [financials/pricing.md](../financials/pricing.md)).
+Open-core: router, tier abstraction, benchmark harness and published frontier remain open. The commercial control plane provides per-deployment tolerance management, savings measurement and attribution, and observability. The beachhead is a staff platform engineer managing roughly $50,000/month of inference spend (assumption: P2 profile), with a $30,000/year ACV scenario derived from $600,000 annual spend, 70% cache-miss traffic, 25% realized saving and a 28% untested pricing hypothesis (assumption: no CAMIR measurement or buyer validation; see [financials/pricing.md](../financials/pricing.md)).
+
+## Market
+
+Bottom-up, from [strategy/market_sizing.md](../strategy/market_sizing.md): routing-fee TAM **~$70M/yr** base case (corridor $10–360M), SAM **~$20M/yr**, **~1,370 reachable companies** (corridor ~470–3,800), and a SOM of ~68 customers and **$2.4M ARR by Y3** (assumption: no customer exists; derived from f2 and the $30,000 ACV). **The sizing's first finding is the uncomfortable one: routing fees alone are not a venture-scale business at 2026 denominators.** The venture case is the inference-efficiency control plane — the same measurement applied to cache policy, quantisation tier, batch policy and upgrade regression — sized at $460–760M by 2031 in [financials/revenue_build.md](../financials/revenue_build.md), with demand unvalidated.
 
 ## Evidence and edge
 
 CAMIR is pre-traction and originates as an SJSU CMPE 295A capstone. The claimed edge is test-automation and evaluation-infrastructure experience transferring to benchmark engineering, recorded as assumption A13. No customer, logo, advisor, testimonial or CAMIR measurement is claimed.
+
+## The ask
+
+**$2.2M over 21 months, in three gated blocks** (assumption: no raise has occurred). The first block is **$280k and answers only one question — does the oracle ceiling exist on realistic self-hosted traffic?** If it does not, ~87% of the raise is unspent and the negative result is published. See [financials/use_of_funds.md](../financials/use_of_funds.md).
 
 ## Recommended next 3
 

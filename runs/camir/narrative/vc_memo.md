@@ -17,6 +17,9 @@ Most routing work optimizes the selector before measuring the ceiling. The Routi
 4. **Serving-engine routing** is the commoditisation clock: vLLM's Semantic Router vision places routing inside the serving stack [S11]. It can dispatch; it does not necessarily provide a customer-owned judging protocol, self-hosted cost derivation, signed counterfactual or disqualification report.
 5. **Naive evaluation** can manufacture incapability. The Unsolvability Ceiling reports truncation in 65% of MMLU and 57% of MedQA cases and 5–12% parse failures on MMLU [S5]. Judge test-retest is above 95% at temperature 0 but about 70% at temperature 1, with position and verbosity effects [S34]; inter-judge agreement is about 76% [S33].
 
+6. **Commercial routers and gateways** have an incentive problem no methodology fixes. OpenRouter reached $160M annualised revenue by taking ~5% of the inference bill it sits on [S17] — it is a gateway with routing, paid more as the bill grows. A frontier vendor shipped routing built into GPT-5 at no separate fee [S20], and the documented backlash — complex queries degraded by being routed to a smaller model, with no dial and no attribution [S21] — is what vendor-set tolerance produces. Martian is reported, by a single weak secondary source, to have neared a ~$1.3B valuation [S18]; its revenue is unknown [G3]. None of them can tell a customer not to buy, because each is paid by the volume it routes.
+7. **Open-core LLM infrastructure** has a recent, direct post-mortem: TensorZero archived its repository in June 2026 after raising $7.3M and passing 11,000 GitHub stars, citing the difficulty of finding fit for an open project and a commercial product at once [S23]. CAMIR's open/paid line is drawn before release for that reason.
+
 ## Core architecture
 
 1. **Ingress proxy** accepts the request without moving prompt text out of the customer's perimeter.

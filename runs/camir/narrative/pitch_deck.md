@@ -109,11 +109,12 @@ visual: V12 — Commodity mechanism versus customer-owned records
 
 visual: V13 — Evidence ladder from capstone to customer proof
 
-## 14. The ask is to measure the ceiling before scaling the story
+## 14. $2.2M over 21 months, staged so 87% is unspent if the ceiling is not there
 
-- Complete the artifact-controlled self-hosted oracle experiment.
-- Run shadow mode with endpoint ownership, traces and pin-to-large.
-- Validate eligible savings, price and the buyer's willingness to sign.
+- **Block 1 — $280k, months 1–4:** does the oracle ceiling exist? Low-fidelity MVP, GPU time for ≥ 3 corpora, 20 discovery screens. **If the ceiling fails, publish the negative result and stop** — [G2] makes the null a contribution.
+- **Block 2 — $820k, months 5–12:** will a consuming engineer enable enforcement on his own endpoint? High-fidelity MVP, five design partners, and $120k ring-fenced for onboarding automation — the whole 42%→75% gross-margin bend.
+- **Block 3 — $1.1M, months 13–21:** does it repeat, and will buyers pay? Control plane, ≥ 3 paid pilots at ≥ $30,000 ACV, one account surviving a pool change.
+- Every figure is `(assumption)`; no raise, term sheet or conversation has occurred. See [../financials/use_of_funds.md](../financials/use_of_funds.md).
 
 visual: V14 — Three-gate validation sequence
 

@@ -2,7 +2,7 @@
 
 CAMIR routes each LLM request to the smallest model tier predicted to answer it correctly, cutting inference spend without crossing a declared quality tolerance — on a self-hosted model pool a team can actually run. Two routing strategies are evaluated against each other rather than assumed: a **classifier route** that predicts difficulty before generation, and a **cascade route** that tries the small tier first and escalates on low confidence. The deliverable is not a point claim but a published, reproducible **cost-quality frontier**, against which a team sets its own quality tolerance. Origin: SJSU CMPE 295A master's capstone, September 2026. No revenue, no pilot customer, no traction, no completed benchmark run.
 
-**Status:** `COMPLETE` · generated 2026-09-10 · run slug `camir` · **61/61 required artifacts · 9 HTML infographics · 0 PNGs rendered**
+**Status:** `PARTIAL` · generated 2026-09-10 · run slug `camir` · **60/61 required artifacts · 9 HTML infographics · 0/22 visuals rendered as images**
 
 > This is a pre-traction SJSU CMPE 295A capstone pack. **[HANDOFF.md](HANDOFF.md) carries the locked decisions** that constrain every artifact; [audit/COVERAGE.md](audit/COVERAGE.md) records row-by-row coverage.
 
@@ -53,6 +53,6 @@ HTML infographics: [V04 artifact ceiling](visuals/infographics/V04_artifact-cont
 
 ## Completeness
 
-`COMPLETE` for the 61 required artifact units. The pack is still pre-traction: oracle ceiling, customer segment, price, channel acceptance and Product 2 demand remain planned assumptions, not observed results. Nine HTML infographics and live Mermaid sources cover the textual visual layer; PNG rows are honestly pending because no image tool is available. Website rows A56/A57 remain optional and intentionally not started because GitHub Pages would expose repository contents and founder consent was not given. See [audit/COVERAGE.md](audit/COVERAGE.md) for row-by-row status.
+`PARTIAL` — 60 of 61 required artifacts pass. The one open row is the per-document illustration map (A52b), which is blocked on a text-to-image tool rather than on writing: the 22 image prompts are ready, and nothing else in the pack is outstanding. The pack is still pre-traction: oracle ceiling, customer segment, price, channel acceptance and Product 2 demand remain planned assumptions, not observed results. Nine HTML infographics and live Mermaid sources cover the textual visual layer; PNG rows are pending for the same reason. Website rows A56/A57 remain optional and intentionally not started because GitHub Pages would expose repository contents and founder consent was not given. See [audit/COVERAGE.md](audit/COVERAGE.md) for row-by-row status.
 
 The binding locked decisions remain in **[HANDOFF.md](HANDOFF.md)**. The website is deliberately disabled.
