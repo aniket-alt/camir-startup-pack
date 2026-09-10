@@ -1,1 +1,37 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Three validation gates</title><style>body{font-family:Georgia,serif;color:#14213D;margin:40px}h1{font-size:30px}.gates{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.gate{padding:18px;border:2px solid #007C83;min-height:200px}.gate:nth-child(2){border-color:#F2A900}.gate:nth-child(3){border-color:#D95D39}.num{font-size:32px;font-weight:bold}.source{font-size:12px;margin-top:28px;border-top:1px solid #14213D;padding-top:10px}</style></head><body><h1>Three gates decide whether CAMIR continues</h1><div class="gates"><div class="gate"><div class="num">01</div><h2>Ceiling</h2><p>E1/E2: Is there anything to route toward after artifact-controlled judging?</p></div><div class="gate"><div class="num">02</div><h2>Segment</h2><p>E4: Does a reachable self-hosted population exist at production volume?</p></div><div class="gate"><div class="num">03</div><h2>Price</h2><p>E7/E8: Will a buyer install, reproduce and pay for the measured counterfactual?</p></div></div><p class="source">Source: validation/riskiest_assumptions.md and validation/experiment_board.md. All experiments are planned, not results.</p></body></html>
+<!doctype html><html lang=en><head><meta charset=utf-8><title>V14 — $2.2M in three gated blocks — 87% unspent if the ceiling is not there</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff}
+#pg{width:1600px;padding:34px 44px 26px;transform-origin:0 0;font-family:'Segoe UI',Arial,sans-serif;color:#14213D}
+header{border-bottom:4px solid #007C83;padding-bottom:12px;margin-bottom:18px;display:flex;gap:18px;align-items:flex-start}
+.vid{font:700 15px 'Segoe UI';background:#14213D;color:#fff;padding:5px 10px;border-radius:3px;margin-top:6px}
+h1{font:700 31px Georgia,serif;margin:0;line-height:1.18}
+.k{font-size:17px;color:#3d4a66;margin:6px 0 0;line-height:1.35}
+main{display:grid;gap:16px}
+.z{border:1px solid #c9d1dc;border-radius:4px;padding:14px 16px;background:#fff}
+.z h2{font:700 13px 'Segoe UI';letter-spacing:.06em;text-transform:uppercase;color:#007C83;margin:0 0 10px}
+.cards{display:grid;gap:10px}
+.card{background:#F3F6F7;border-left:5px solid #007C83;padding:10px 12px}
+.card.a{border-color:#F2A900}.card.v{border-color:#D95D39}.card.n{border-color:#9aa6b8}
+.big{font:700 27px Georgia,serif;line-height:1.05;color:#007C83}.card.a .big{color:#A56A00}.card.v .big{color:#C4472B}.card.n .big{color:#14213D}
+.lab{font-weight:700;font-size:15px;margin-top:4px}.nt{font-size:13.5px;color:#3d4a66;margin-top:3px;line-height:1.35}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{background:#14213D;color:#fff;text-align:left;padding:6px 8px;font-weight:600}
+td{border-bottom:1px solid #dde3ea;padding:5px 8px;vertical-align:top;line-height:1.3}
+tr.hl td{background:#fdf2e1}tr.kill td{background:#fbe6e1}tr.ok td{background:#e3f2f1}
+.steps{display:flex;gap:8px;align-items:stretch}
+.st{flex:1;background:#F3F6F7;border-top:4px solid #007C83;padding:9px 10px;position:relative}
+.st.a{border-color:#F2A900}.st.v{border-color:#D95D39}
+.sn{font:700 12px 'Segoe UI';color:#007C83}.sl{font-weight:700;font-size:15px;margin:2px 0}.sd{font-size:13px;color:#3d4a66;line-height:1.33}
+.bars .b{margin:7px 0}.bl{font-size:14px;font-weight:600;display:flex;justify-content:space-between}
+.bt{height:22px;background:#eef1f5;border-radius:2px;margin-top:3px}.bf{height:22px;background:#007C83;border-radius:2px;color:#fff;font:700 13px 'Segoe UI';padding:2px 8px;white-space:nowrap}
+.bf.a{background:#F2A900;color:#14213D}.bf.v{background:#D95D39}.bf.n{background:#5b6b85}
+.cols{display:grid;gap:12px}.col{background:#F3F6F7;padding:11px 13px;border-top:4px solid #007C83}
+.col.a{border-color:#F2A900}.col.v{border-color:#D95D39}.col.n{border-color:#9aa6b8}
+.col h3{margin:0 0 6px;font-size:16px}.col ul{margin:0;padding-left:18px;font-size:14px;line-height:1.38}
+.call{background:#14213D;color:#fff;padding:13px 16px;font-size:16px;line-height:1.4;border-radius:3px}
+.call.a{background:#fdf2e1;color:#14213D;border-left:5px solid #F2A900}.call.v{background:#fbe6e1;color:#14213D;border-left:5px solid #D95D39}
+.quad{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:100%;min-height:330px}
+.q{background:#F3F6F7;padding:10px 12px;font-size:14px;line-height:1.4}.q.hot{background:#e3f2f1;border:2px solid #007C83}
+.q b{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#5b6b85;margin-bottom:4px}
+footer{margin-top:14px;font-size:12.5px;color:#556;border-top:1px solid #c9d1dc;padding-top:7px}
+code{font-family:Consolas,monospace;font-size:.92em;background:#eef1f5;padding:0 3px}
+</style></head><body><div id=pg><header><div class=vid>V14</div><div><h1>$2.2M in three gated blocks — 87% unspent if the ceiling is not there</h1><p class=k>The raise is sequenced so the kill signal arrives before most of the money is committed. The metric to report is dollars spent per assumption killed.</p></div></header><main style="grid-template-columns:1fr"><section class=z style=""><h2>The blocks</h2><div class=steps><div class="st v"><div class=sn>1</div><div class=sl>Block 1 — $280k · months 1–4</div><div class=sd>&quot;Does the ceiling exist?&quot; Low-fidelity MVP, GPU node, 20 discovery screens. <b>Fail → publish the null and stop</b></div></div><div class="st "><div class=sn>2</div><div class=sl>Block 2 — $820k · months 5–12</div><div class=sd>&quot;Will a risk-bearer accept it?&quot; Shadow → owner-enabled enforcement at 5 design partners; $120k ring-fenced for onboarding automation</div></div><div class="st "><div class=sn>3</div><div class=sl>Block 3 — $1.1M · months 13–21</div><div class=sd>&quot;Does it repeat, and will they pay?&quot; Control plane, ≥ 3 paid pilots, one account surviving a pool change</div></div></div></section><section class=z style=""><h2>Dollars per assumption killed</h2><table><tr><th>Block</th><th>Spend</th><th>Resolves</th><th>$ / assumption</th></tr><tr class="ok"><td>1</td><td>$280,000</td><td>A2 ceiling · harness thesis · A3 segment · veto incidence</td><td><b>$70,000</b></td></tr><tr class=""><td>2</td><td>$820,000</td><td>Veto closability · cascade economics · channel</td><td>$273,000</td></tr><tr class=""><td>3</td><td>$1,100,000</td><td>A4 will they pay · A5 billable · A6 switching cost</td><td>$367,000</td></tr></table></section><section class=z style=""><h2>Not hired in 21 months, deliberately</h2><div class=cards style="grid-template-columns:repeat(3,1fr)"><div class="card n"><div class=big>VP Sales</div><div class=lab>outbound CAC ~117% of ACV</div></div><div class="card n"><div class=big>ML researcher</div><div class=lab>the classifier is expected to be null [S4][S8]</div></div><div class="card n"><div class=big>Full-time designer</div><div class=lab>two of three deciders never open the product</div></div></div></section></main><footer>Source: financials/use_of_funds.md · validation/pivot_log.md P1 · every figure <code>(assumption)</code> — no raise has occurred · CAMIR founder pack, run <code>camir</code>, 2026-09-10</footer></div><script>(function(){var p=document.getElementById('pg'),s=1;for(var i=0;i<10;i++){p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';var h=p.scrollHeight;var n=Math.min(1.3,900/h);if(Math.abs(n-s)<0.004)break;s=n;}p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';document.title='fit:'+s.toFixed(3);})();</script></body></html>

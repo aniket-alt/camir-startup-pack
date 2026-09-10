@@ -1,6 +1,6 @@
 # CAMIR — Image prompts
 
-**What this is** — production-ready schematic prompts corresponding one-to-one with the visual manifest.
+**What this is** — production-ready schematic prompts corresponding one-to-one with the 45-row visual manifest, for stylised raster versions if a text-to-image tool becomes available. **None has been rendered**; the PNGs in `images/` are browser snapshots of the HTML and Mermaid sources, not renders of these prompts.
 **Why it exists** — image generation can garble exact numbers and labels; these prompts constrain each raster to structure while the HTML and source artifacts remain the exact record.
 **How to read it** — each prompt names its visual ID, labels to render and source; never mark a raster rendered until the file exists and has been opened.
 **Depends on / feeds** — depends on [visual_manifest.md](visual_manifest.md), [narrative/pitch_deck.md](../narrative/pitch_deck.md) and source artifacts throughout [../](../); feeds optional `images/*.png` and [docimages.json](docimages.json).
@@ -75,7 +75,52 @@ TITLE: One request, five records. Draw one request token flowing to exactly five
 TITLE: Buyer decision rights and eligible-savings definition. Draw exactly four roles labeled “Marcus validates”, “Ravi vetoes”, “Dana signs”, “finance checks”, surrounding one document labeled “eligible savings”. Source: financials/pricing.md.
 
 ### P22 — V22
-TITLE: LiteLLM channel dependency and fallback. Draw exactly three paths labeled “upstream proposal”, “accepted”, “re-plan”, with “third-party dependency” as a small warning label. Source: strategy/channel_plan.md.
+TITLE: Two risks stay High. Draw exactly TWO tall coral blocks labeled “R1 ceiling” and “R2 engine” and SIX short grey blocks labeled “R3” “R4” “R5” “R6” “R7” “R8”, in one row, left to right. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P23–P31 — V23–V31 (and V06, V16)
+No diffusion prompt. These rows are rendered deterministically from the Mermaid source in their architecture or technique file; a text-to-image render could only degrade a diagram whose exact labels are the content (A50). The PNG in `images/` is the diagram itself.
+
+### P32 — V32
+TITLE: The market divides on two axes. Draw exactly FOUR quadrant tiles in a 2×2 grid; the top-right tile highlighted teal and labeled “CAMIR”; the other three labeled “vendor-set”, “hosted”, “absent”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P33 — V33
+TITLE: 40 sources, graded. Draw exactly THREE horizontal bars of lengths 21, 17 and 2 units, labeled inside “21 primary”, “17 secondary”, “2 weak”; the shortest coral. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P34 — V34
+TITLE: Two canvases. Draw exactly TWO grids side by side, one of 9 cells and one of 9 cells, with exactly two cells of the first marked coral and labeled “moat” and “revenue”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P35 — V35
+TITLE: Three top fits. Draw exactly THREE cards labeled “attribution”, “tolerance”, “signed report”, and one struck-through card labeled “cheaper bill”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P36 — V36
+TITLE: Five petals. Draw exactly FIVE petals around a centre labeled “CAMIR”; one teal petal labeled “inference bill”, one coral petal labeled “own engineers”, three grey petals unlabeled. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P37 — V37
+TITLE: Surfaces by consequence. Draw exactly FOUR stacked bars, longest at top, labeled inside “S9 trace”, “S1 qualify”, “S2 frontier”, “S3 disqualify”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P38 — V38
+TITLE: Buildable vs research. Draw exactly TWO columns: a tall teal column labeled “buildable now” and a short amber column labeled “research bets”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P39 — V39
+TITLE: Discovery kit. Draw exactly FIVE numbered steps left to right labeled “screen”, “world”, “blame”, “money”, “solution”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P40 — V40
+TITLE: Get, keep, grow. Draw exactly THREE funnel sections top to bottom labeled “get”, “keep”, “grow”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P41 — V41
+TITLE: Metric vs vanity. Draw exactly FOUR rows, each a teal tile and a crossed-out grey tile; teal tiles labeled “ceiling”, “enforcement”, “M9”, “NRR”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P42 — V42
+TITLE: Unit economics. Draw exactly FOUR rising bars labeled inside “42%”, “63%”, “75%”, “81%”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P43 — V43
+TITLE: Road to 2031. Draw exactly FIVE milestones on a timeline labeled “2026”, “2027”, “2028”, “2030”, “2031”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P44 — V44
+TITLE: Five values. Draw exactly FIVE balance scales in a row, each tilted, with no labels except a single headline “trade-offs”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
+
+### P45 — V45
+TITLE: Locked decisions. Draw exactly THREE padlocks labeled “self-hosted first”, “open-core”, “capstone stated”. Render ONLY the labels quoted above, each inside the shape it describes; no other text.
 
 ## Recommended next 3
 

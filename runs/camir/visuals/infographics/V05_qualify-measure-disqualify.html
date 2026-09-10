@@ -1,1 +1,37 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Qualify measure disqualify</title><style>body{font-family:Georgia,serif;color:#14213D;margin:40px}h1{font-size:30px;color:#007C83}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.step{min-height:180px;border-top:8px solid #007C83;background:#F3F6F7;padding:18px}.step:nth-child(3){border-color:#D95D39}.num{font-size:34px;font-weight:bold}.source{margin-top:28px;border-top:1px solid #14213D;padding-top:10px;font-size:12px}</style></head><body><h1>The first product behavior is a defensible negative</h1><div class="steps"><div class="step"><div class="num">01</div><h2>Qualify</h2><p>Replay corpus builder<br>Pool manifest<br>Artifact guard</p></div><div class="step"><div class="num">02</div><h2>Measure</h2><p>Oracle ceiling probe<br>Fixed-model baseline<br>Cost-quality frontier</p></div><div class="step"><div class="num">03</div><h2>Disqualify</h2><p>If the ceiling cannot support routing economics, issue <b>do not deploy</b>.</p></div></div><p class="source">Source: product/PRD.md, features_flagship.md, validation/riskiest_assumptions.md. All CAMIR measurements remain unrun.</p></body></html>
+<!doctype html><html lang=en><head><meta charset=utf-8><title>V05 — The first output can be &quot;do not deploy&quot;</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff}
+#pg{width:1600px;padding:34px 44px 26px;transform-origin:0 0;font-family:'Segoe UI',Arial,sans-serif;color:#14213D}
+header{border-bottom:4px solid #007C83;padding-bottom:12px;margin-bottom:18px;display:flex;gap:18px;align-items:flex-start}
+.vid{font:700 15px 'Segoe UI';background:#14213D;color:#fff;padding:5px 10px;border-radius:3px;margin-top:6px}
+h1{font:700 31px Georgia,serif;margin:0;line-height:1.18}
+.k{font-size:17px;color:#3d4a66;margin:6px 0 0;line-height:1.35}
+main{display:grid;gap:16px}
+.z{border:1px solid #c9d1dc;border-radius:4px;padding:14px 16px;background:#fff}
+.z h2{font:700 13px 'Segoe UI';letter-spacing:.06em;text-transform:uppercase;color:#007C83;margin:0 0 10px}
+.cards{display:grid;gap:10px}
+.card{background:#F3F6F7;border-left:5px solid #007C83;padding:10px 12px}
+.card.a{border-color:#F2A900}.card.v{border-color:#D95D39}.card.n{border-color:#9aa6b8}
+.big{font:700 27px Georgia,serif;line-height:1.05;color:#007C83}.card.a .big{color:#A56A00}.card.v .big{color:#C4472B}.card.n .big{color:#14213D}
+.lab{font-weight:700;font-size:15px;margin-top:4px}.nt{font-size:13.5px;color:#3d4a66;margin-top:3px;line-height:1.35}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{background:#14213D;color:#fff;text-align:left;padding:6px 8px;font-weight:600}
+td{border-bottom:1px solid #dde3ea;padding:5px 8px;vertical-align:top;line-height:1.3}
+tr.hl td{background:#fdf2e1}tr.kill td{background:#fbe6e1}tr.ok td{background:#e3f2f1}
+.steps{display:flex;gap:8px;align-items:stretch}
+.st{flex:1;background:#F3F6F7;border-top:4px solid #007C83;padding:9px 10px;position:relative}
+.st.a{border-color:#F2A900}.st.v{border-color:#D95D39}
+.sn{font:700 12px 'Segoe UI';color:#007C83}.sl{font-weight:700;font-size:15px;margin:2px 0}.sd{font-size:13px;color:#3d4a66;line-height:1.33}
+.bars .b{margin:7px 0}.bl{font-size:14px;font-weight:600;display:flex;justify-content:space-between}
+.bt{height:22px;background:#eef1f5;border-radius:2px;margin-top:3px}.bf{height:22px;background:#007C83;border-radius:2px;color:#fff;font:700 13px 'Segoe UI';padding:2px 8px;white-space:nowrap}
+.bf.a{background:#F2A900;color:#14213D}.bf.v{background:#D95D39}.bf.n{background:#5b6b85}
+.cols{display:grid;gap:12px}.col{background:#F3F6F7;padding:11px 13px;border-top:4px solid #007C83}
+.col.a{border-color:#F2A900}.col.v{border-color:#D95D39}.col.n{border-color:#9aa6b8}
+.col h3{margin:0 0 6px;font-size:16px}.col ul{margin:0;padding-left:18px;font-size:14px;line-height:1.38}
+.call{background:#14213D;color:#fff;padding:13px 16px;font-size:16px;line-height:1.4;border-radius:3px}
+.call.a{background:#fdf2e1;color:#14213D;border-left:5px solid #F2A900}.call.v{background:#fbe6e1;color:#14213D;border-left:5px solid #D95D39}
+.quad{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:100%;min-height:330px}
+.q{background:#F3F6F7;padding:10px 12px;font-size:14px;line-height:1.4}.q.hot{background:#e3f2f1;border:2px solid #007C83}
+.q b{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#5b6b85;margin-bottom:4px}
+footer{margin-top:14px;font-size:12.5px;color:#556;border-top:1px solid #c9d1dc;padding-top:7px}
+code{font-family:Consolas,monospace;font-size:.92em;background:#eef1f5;padding:0 3px}
+</style></head><body><div id=pg><header><div class=vid>V05</div><div><h1>The first output can be &quot;do not deploy&quot;</h1><p class=k>The qualify path measures the ceiling before any router exists — and on Marcus&#x27;s pool it removes his most expensive endpoint from scope in week one.</p></div></header><main style="grid-template-columns:1fr"><section class=z style=""><h2>The qualify path — nothing in production is touched</h2><div class=steps><div class="st "><div class=sn>1</div><div class=sl>Replay corpus</div><div class=sd>8,000 requests, stratified by endpoint × length band, hashed</div></div><div class="st "><div class=sn>2</div><div class=sl>Ceiling probe</div><div class=sd>Every request × every tier: 24,000 generations overnight</div></div><div class="st "><div class=sn>3</div><div class=sl>Guarded vs unguarded</div><div class=sd>Artifact guard on and off — the difference is the artifact share</div></div><div class="st "><div class=sn>4</div><div class=sl>Two judges</div><div class=sd>Temperature 0, position-fixed, agreement published</div></div><div class="st v"><div class=sn>5</div><div class=sl>Verdict</div><div class=sd>Deploy on some endpoints; <b>disqualify</b> where the gap is below operating cost</div></div></div></section><section class=z style=""><h2>Marcus&#x27;s first frontier run — illustrative</h2><table><tr><th>Endpoint</th><th>Oracle ceiling</th><th>Artifact share</th><th>Baseline cost / 1k req</th><th>Verdict</th></tr><tr class=""><td>support-answering</td><td>61%</td><td>14 pp</td><td>$0.94</td><td>route</td></tr><tr class="hl"><td>structured-extraction</td><td>88%</td><td><b>31 pp</b></td><td>$0.51</td><td>route — harness fix first</td></tr><tr class="kill"><td>account-reasoning</td><td><b>22%</b></td><td>6 pp</td><td>$2.10</td><td><b>DISQUALIFIED</b></td></tr><tr class=""><td>doc-summarisation</td><td>57%</td><td>11 pp</td><td>$1.32</td><td>route</td></tr><tr class=""><td>classification</td><td>91%</td><td>4 pp</td><td>$0.22</td><td>route — on the 70B for 11 months</td></tr><tr class=""><td>internal-tools</td><td>44%</td><td>9 pp</td><td>$0.77</td><td>route</td></tr></table></section><section class=z style="border:0;padding:0"><div class="call ">The disqualification lands <b>before</b> the saving. A vendor paid on routed volume cannot render this page — which is why everything Marcus believes afterwards is credible.</div></section></main><footer>Source: product/journeys/beachhead.md Week 1 · tech/architecture/D01.md · Figures marked amber are illustrative or <code>(assumption)</code> — no CAMIR measurement exists [G2]. · CAMIR founder pack, run <code>camir</code>, 2026-09-10</footer></div><script>(function(){var p=document.getElementById('pg'),s=1;for(var i=0;i<10;i++){p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';var h=p.scrollHeight;var n=Math.min(1.3,900/h);if(Math.abs(n-s)<0.004)break;s=n;}p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';document.title='fit:'+s.toFixed(3);})();</script></body></html>

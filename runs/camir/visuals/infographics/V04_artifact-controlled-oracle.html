@@ -1,1 +1,37 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Artifact-controlled oracle ceiling</title><style>body{font-family:Georgia,serif;color:#14213D;background:#fff;margin:40px}h1{font-size:30px;border-bottom:4px solid #007C83;padding-bottom:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{border:1px solid #14213D;padding:18px;background:#F3F6F7}.big{font-size:28px;color:#007C83;font-weight:bold}.warn{color:#D95D39}.assume{color:#A56A00}.source{margin-top:28px;font-size:12px;border-top:1px solid #14213D;padding-top:10px}</style></head><body><h1>Artifact correction changes what the frontier can mean</h1><div class="grid"><div class="card"><div class="big">65%</div><b>MMLU cases truncated</b><p>Fixed generation budgets can manufacture apparent incapability.</p></div><div class="card"><div class="big">57%</div><b>MedQA cases truncated</b><p>Report truncation per tier and task.</p></div><div class="card"><div class="big">5–12%</div><b>MMLU parse failures</b><p>Count failures; do not silently score them as wrong.</p></div><div class="card"><div class="big assume">Two views</div><b>Measured labels vs realized routing</b><p>Artifact correction is not production savings until held-out labels and escalation are measured.</p></div></div><p class="source">Source: [S5]. CAMIR claim: your frontier is measurable on your pool, and part of the apparent ceiling is your harness.</p></body></html>
+<!doctype html><html lang=en><head><meta charset=utf-8><title>V04 — A meaningful part of the apparent ceiling is the harness</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff}
+#pg{width:1600px;padding:34px 44px 26px;transform-origin:0 0;font-family:'Segoe UI',Arial,sans-serif;color:#14213D}
+header{border-bottom:4px solid #007C83;padding-bottom:12px;margin-bottom:18px;display:flex;gap:18px;align-items:flex-start}
+.vid{font:700 15px 'Segoe UI';background:#14213D;color:#fff;padding:5px 10px;border-radius:3px;margin-top:6px}
+h1{font:700 31px Georgia,serif;margin:0;line-height:1.18}
+.k{font-size:17px;color:#3d4a66;margin:6px 0 0;line-height:1.35}
+main{display:grid;gap:16px}
+.z{border:1px solid #c9d1dc;border-radius:4px;padding:14px 16px;background:#fff}
+.z h2{font:700 13px 'Segoe UI';letter-spacing:.06em;text-transform:uppercase;color:#007C83;margin:0 0 10px}
+.cards{display:grid;gap:10px}
+.card{background:#F3F6F7;border-left:5px solid #007C83;padding:10px 12px}
+.card.a{border-color:#F2A900}.card.v{border-color:#D95D39}.card.n{border-color:#9aa6b8}
+.big{font:700 27px Georgia,serif;line-height:1.05;color:#007C83}.card.a .big{color:#A56A00}.card.v .big{color:#C4472B}.card.n .big{color:#14213D}
+.lab{font-weight:700;font-size:15px;margin-top:4px}.nt{font-size:13.5px;color:#3d4a66;margin-top:3px;line-height:1.35}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{background:#14213D;color:#fff;text-align:left;padding:6px 8px;font-weight:600}
+td{border-bottom:1px solid #dde3ea;padding:5px 8px;vertical-align:top;line-height:1.3}
+tr.hl td{background:#fdf2e1}tr.kill td{background:#fbe6e1}tr.ok td{background:#e3f2f1}
+.steps{display:flex;gap:8px;align-items:stretch}
+.st{flex:1;background:#F3F6F7;border-top:4px solid #007C83;padding:9px 10px;position:relative}
+.st.a{border-color:#F2A900}.st.v{border-color:#D95D39}
+.sn{font:700 12px 'Segoe UI';color:#007C83}.sl{font-weight:700;font-size:15px;margin:2px 0}.sd{font-size:13px;color:#3d4a66;line-height:1.33}
+.bars .b{margin:7px 0}.bl{font-size:14px;font-weight:600;display:flex;justify-content:space-between}
+.bt{height:22px;background:#eef1f5;border-radius:2px;margin-top:3px}.bf{height:22px;background:#007C83;border-radius:2px;color:#fff;font:700 13px 'Segoe UI';padding:2px 8px;white-space:nowrap}
+.bf.a{background:#F2A900;color:#14213D}.bf.v{background:#D95D39}.bf.n{background:#5b6b85}
+.cols{display:grid;gap:12px}.col{background:#F3F6F7;padding:11px 13px;border-top:4px solid #007C83}
+.col.a{border-color:#F2A900}.col.v{border-color:#D95D39}.col.n{border-color:#9aa6b8}
+.col h3{margin:0 0 6px;font-size:16px}.col ul{margin:0;padding-left:18px;font-size:14px;line-height:1.38}
+.call{background:#14213D;color:#fff;padding:13px 16px;font-size:16px;line-height:1.4;border-radius:3px}
+.call.a{background:#fdf2e1;color:#14213D;border-left:5px solid #F2A900}.call.v{background:#fbe6e1;color:#14213D;border-left:5px solid #D95D39}
+.quad{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:100%;min-height:330px}
+.q{background:#F3F6F7;padding:10px 12px;font-size:14px;line-height:1.4}.q.hot{background:#e3f2f1;border:2px solid #007C83}
+.q b{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#5b6b85;margin-bottom:4px}
+footer{margin-top:14px;font-size:12.5px;color:#556;border-top:1px solid #c9d1dc;padding-top:7px}
+code{font-family:Consolas,monospace;font-size:.92em;background:#eef1f5;padding:0 3px}
+</style></head><body><div id=pg><header><div class=vid>V04</div><div><h1>A meaningful part of the apparent ceiling is the harness</h1><p class=k>Across 206,000 query-model pairs, much of &quot;the small model cannot do this&quot; was evaluation artifact [S5]. The judge adds its own error on top [S33][S34].</p></div></header><main style="grid-template-columns:1.25fr 1fr"><section class=z style=""><h2>Evaluation artifacts [S5]</h2><div class=cards style="grid-template-columns:repeat(2,1fr)"><div class="card "><div class=big>65%</div><div class=lab>MMLU cases truncated</div><div class=nt>Fixed generation budgets manufacture incapability</div></div><div class="card "><div class=big>57%</div><div class=lab>MedQA cases truncated</div></div><div class="card "><div class=big>5–12%</div><div class=lab>MMLU parse failures</div><div class=nt>Scored as wrong unless counted</div></div><div class="card n"><div class=big>verbosity</div><div class=lab>judge bias</div><div class=nt>Rewards length over correctness</div></div></div></section><section class=z style=""><h2>Judge reliability — why the protocol is forced</h2><table><tr><th>Setting</th><th>Finding</th></tr><tr class=""><td>Temperature 0</td><td><b>&gt;95%</b> same-verdict on retest [S34]</td></tr><tr class=""><td>Temperature 1</td><td><b>~70%</b> same-verdict [S34]</td></tr><tr class=""><td>Answer position</td><td><b>~40%</b> GPT-4 inconsistency [S34]</td></tr><tr class=""><td>Verbosity</td><td><b>~15%</b> inflation [S34]</td></tr><tr class=""><td>Judge vs judge</td><td><b>~76%</b> agreement — vs ~80% with humans [S33]</td></tr></table></section><section class=z style="grid-column:1/3"><h2>The artifact share should shrink as the harness improves — illustrative, from the journeys</h2><div class=bars><div class=b><div class=bl><span>Priya — two GPUs, no eval team</span></div><div class=bt><div class="bf a" style="width:86.4%">19 pp</div></div></div><div class=b><div class=bl><span>Marcus — support-answering endpoint</span></div><div class=bt><div class="bf a" style="width:63.6%">14 pp</div></div></div><div class=b><div class=bl><span>Wen — in-house evaluation team</span></div><div class=bt><div class="bf a" style="width:27.3%">6 pp</div></div></div></div></section></main><footer>Source: [S5] [S33] [S34] · journeys: product/journeys/*.md · Figures marked amber are illustrative or <code>(assumption)</code> — no CAMIR measurement exists [G2]. · CAMIR founder pack, run <code>camir</code>, 2026-09-10</footer></div><script>(function(){var p=document.getElementById('pg'),s=1;for(var i=0;i<10;i++){p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';var h=p.scrollHeight;var n=Math.min(1.3,900/h);if(Math.abs(n-s)<0.004)break;s=n;}p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';document.title='fit:'+s.toFixed(3);})();</script></body></html>

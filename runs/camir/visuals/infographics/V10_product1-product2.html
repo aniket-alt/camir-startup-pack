@@ -1,1 +1,37 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Product 1 and Product 2</title><style>body{font-family:Georgia,serif;color:#14213D;margin:40px}h1{font-size:30px}.cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{padding:22px;background:#F3F6F7;border-top:8px solid #007C83}.card:nth-child(2){border-color:#F2A900}.big{font-size:28px;font-weight:bold}.source{font-size:12px;margin-top:28px;border-top:1px solid #14213D;padding-top:10px}</style></head><body><h1>Routing fees are the ceiling; measured efficiency is the option</h1><div class="cols"><div class="card"><h2>Product 1: routing control plane</h2><div class="big">~$20M SAM</div><p>Tier selection, tolerance policy, savings measurement and attribution.</p><p>ACV scenario: $30,000/year.</p></div><div class="card"><h2>Product 2: hypothesis</h2><div class="big">$460–760M scenario</div><p>Cache policy, quantization, batching and upgrade regression measured on the same frontier.</p><p>Demand and take rate are unvalidated.</p></div></div><p class="source">Source: strategy/market_sizing.md and financials/revenue_build.md. Hybrid 3.3x is a spend-pool ratio, not a company-count multiplier.</p></body></html>
+<!doctype html><html lang=en><head><meta charset=utf-8><title>V10 — Routing fees alone are not venture-scale — the control plane is the option</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#fff}
+#pg{width:1600px;padding:34px 44px 26px;transform-origin:0 0;font-family:'Segoe UI',Arial,sans-serif;color:#14213D}
+header{border-bottom:4px solid #007C83;padding-bottom:12px;margin-bottom:18px;display:flex;gap:18px;align-items:flex-start}
+.vid{font:700 15px 'Segoe UI';background:#14213D;color:#fff;padding:5px 10px;border-radius:3px;margin-top:6px}
+h1{font:700 31px Georgia,serif;margin:0;line-height:1.18}
+.k{font-size:17px;color:#3d4a66;margin:6px 0 0;line-height:1.35}
+main{display:grid;gap:16px}
+.z{border:1px solid #c9d1dc;border-radius:4px;padding:14px 16px;background:#fff}
+.z h2{font:700 13px 'Segoe UI';letter-spacing:.06em;text-transform:uppercase;color:#007C83;margin:0 0 10px}
+.cards{display:grid;gap:10px}
+.card{background:#F3F6F7;border-left:5px solid #007C83;padding:10px 12px}
+.card.a{border-color:#F2A900}.card.v{border-color:#D95D39}.card.n{border-color:#9aa6b8}
+.big{font:700 27px Georgia,serif;line-height:1.05;color:#007C83}.card.a .big{color:#A56A00}.card.v .big{color:#C4472B}.card.n .big{color:#14213D}
+.lab{font-weight:700;font-size:15px;margin-top:4px}.nt{font-size:13.5px;color:#3d4a66;margin-top:3px;line-height:1.35}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{background:#14213D;color:#fff;text-align:left;padding:6px 8px;font-weight:600}
+td{border-bottom:1px solid #dde3ea;padding:5px 8px;vertical-align:top;line-height:1.3}
+tr.hl td{background:#fdf2e1}tr.kill td{background:#fbe6e1}tr.ok td{background:#e3f2f1}
+.steps{display:flex;gap:8px;align-items:stretch}
+.st{flex:1;background:#F3F6F7;border-top:4px solid #007C83;padding:9px 10px;position:relative}
+.st.a{border-color:#F2A900}.st.v{border-color:#D95D39}
+.sn{font:700 12px 'Segoe UI';color:#007C83}.sl{font-weight:700;font-size:15px;margin:2px 0}.sd{font-size:13px;color:#3d4a66;line-height:1.33}
+.bars .b{margin:7px 0}.bl{font-size:14px;font-weight:600;display:flex;justify-content:space-between}
+.bt{height:22px;background:#eef1f5;border-radius:2px;margin-top:3px}.bf{height:22px;background:#007C83;border-radius:2px;color:#fff;font:700 13px 'Segoe UI';padding:2px 8px;white-space:nowrap}
+.bf.a{background:#F2A900;color:#14213D}.bf.v{background:#D95D39}.bf.n{background:#5b6b85}
+.cols{display:grid;gap:12px}.col{background:#F3F6F7;padding:11px 13px;border-top:4px solid #007C83}
+.col.a{border-color:#F2A900}.col.v{border-color:#D95D39}.col.n{border-color:#9aa6b8}
+.col h3{margin:0 0 6px;font-size:16px}.col ul{margin:0;padding-left:18px;font-size:14px;line-height:1.38}
+.call{background:#14213D;color:#fff;padding:13px 16px;font-size:16px;line-height:1.4;border-radius:3px}
+.call.a{background:#fdf2e1;color:#14213D;border-left:5px solid #F2A900}.call.v{background:#fbe6e1;color:#14213D;border-left:5px solid #D95D39}
+.quad{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px;height:100%;min-height:330px}
+.q{background:#F3F6F7;padding:10px 12px;font-size:14px;line-height:1.4}.q.hot{background:#e3f2f1;border:2px solid #007C83}
+.q b{display:block;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:#5b6b85;margin-bottom:4px}
+footer{margin-top:14px;font-size:12.5px;color:#556;border-top:1px solid #c9d1dc;padding-top:7px}
+code{font-family:Consolas,monospace;font-size:.92em;background:#eef1f5;padding:0 3px}
+</style></head><body><div id=pg><header><div class=vid>V10</div><div><h1>Routing fees alone are not venture-scale — the control plane is the option</h1><p class=k>The sizing&#x27;s first finding, stated first. Every bend in the revenue build names the milestone that causes it — and three of them are not under CAMIR&#x27;s control.</p></div></header><main style="grid-template-columns:1fr 1.1fr"><section class=z style=""><h2>Market, bottom-up</h2><div class=cards style="grid-template-columns:repeat(2,1fr)"><div class="card a"><div class=big>~$70M/yr</div><div class=lab>routing-fee TAM, base</div><div class=nt>Corridor $10–360M</div></div><div class="card a"><div class=big>~$20M/yr</div><div class=lab>SAM</div><div class=nt>Year-one product restrictions</div></div><div class="card a"><div class=big>~1,370</div><div class=lab>reachable companies</div><div class=nt>Corridor ~470–3,800 [G1]</div></div><div class="card v"><div class=big>$460–760M</div><div class=lab>Product 2 TAM, 2031</div><div class=nt>Cache, quantisation, batching, upgrade regression — demand unvalidated</div></div></div></section><section class=z style=""><h2>The build — scenario, not forecast</h2><table><tr><th>Year</th><th>Customers</th><th>ACV</th><th>Ending ARR</th><th>Motion</th></tr><tr class=""><td>Y1</td><td>5</td><td>$30,000</td><td>$0.15M</td><td>Published frontier, peer proof</td></tr><tr class=""><td>Y2</td><td>27</td><td>$32,000</td><td>$0.86M</td><td>LiteLLM strategy live (M2)</td></tr><tr class=""><td>Y3</td><td>68</td><td>$35,000</td><td>$2.38M</td><td>A + C compounding</td></tr><tr class=""><td>Y5</td><td>219</td><td>$50,000</td><td>$10.95M</td><td>Hybrid pools GA (M5)</td></tr><tr class=""><td>Y8</td><td>1,001</td><td>$95,000</td><td>$95.1M</td><td>Product 2 primary</td></tr></table></section><section class=z style="grid-column:1/3"><h2>The three milestones that each halve the terminal number</h2><div class=cards style="grid-template-columns:repeat(3,1fr)"><div class="card v"><div class=big>M2</div><div class=lab>LiteLLM merges the strategy</div><div class=nt>Unagreed by anyone today — Y2 ARR halves without it</div></div><div class="card v"><div class=big>M4</div><div class=lab>Product 2 GA</div><div class=nt>Customers must want levers nobody has asked for</div></div><div class="card v"><div class=big>M5</div><div class=lab>Hybrid pools GA</div><div class=nt>Must be distinct from a vendor&#x27;s free router [S20]</div></div></div></section></main><footer>Source: strategy/market_sizing.md · financials/revenue_build.md · [S20] [G1] · penetration never exceeds 4.4% of reachable population · CAMIR founder pack, run <code>camir</code>, 2026-09-10</footer></div><script>(function(){var p=document.getElementById('pg'),s=1;for(var i=0;i<10;i++){p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';var h=p.scrollHeight;var n=Math.min(1.3,900/h);if(Math.abs(n-s)<0.004)break;s=n;}p.style.width=(1600/s)+'px';p.style.transform='scale('+s+')';document.title='fit:'+s.toFixed(3);})();</script></body></html>
