@@ -11,7 +11,7 @@ Make every self-hosted model pool's cost-quality frontier measurable and auditab
 
 ## Vision
 
-Inference teams treat each model change, cache policy, quantization choice and routing decision as a reproducible frontier run. The frontier records not only cost and quality, but judge agreement, artifact flags, utilization, endpoint ownership and the decision to stop routing when the ceiling is too low.
+**By 2036:** routing is a default layer of the inference stack — nobody sends every request to one model, the same way nobody serves every static asset from origin (the founder's own ten-year line, [../BRIEF.md](../BRIEF.md) §Wedge). What CAMIR adds to that world: inference teams treat each model change, cache policy, quantization choice and routing decision as a reproducible frontier run. The frontier records not only cost and quality, but judge agreement, artifact flags, utilization, endpoint ownership and the decision to stop routing when the ceiling is too low.
 
 ## Values as trade-offs
 

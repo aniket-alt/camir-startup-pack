@@ -39,9 +39,9 @@ visual: V04 — Artifact-controlled oracle ceiling decomposition
 
 ## 5. The first output is a disqualification report, not a router demo
 
-- Replay corpus builder and oracle ceiling probe run the customer's request distribution across the model pool.
-- If the ceiling cannot support a meaningful frontier, CAMIR says do not deploy.
-- A negative result is cheaper than a production regression.
+- Replay corpus builder and oracle ceiling probe run the customer's own logged requests through every tier, guarded and unguarded.
+- **Worked case:** on Marcus's six endpoints, `account-reasoning` — his most expensive — comes back at a 22% ceiling and is **disqualified in week one**; `structured-extraction` shows a 31-point artifact share, recovered by a generation-budget change he could have made himself ([../product/journeys/beachhead.md](../product/journeys/beachhead.md), illustrative).
+- The disqualification lands before the saving, which is what makes the saving believable. No vendor paid on routed volume can render this page.
 
 visual: V05 — Qualify, measure, disqualify
 
@@ -55,25 +55,27 @@ visual: V06 — CAMIR core loop
 
 ## 7. Ravi can stop routing without asking the platform team
 
-- Per-endpoint quality tolerance belongs to the consuming engineer.
-- Every tier decision is stamped on the caller's trace.
-- Shadow mode precedes enforcement; unilateral pin-to-large works on the next request.
+- The saving lands in Dana's budget; the risk lands on Ravi, in a different reporting line, who gains nothing and can pin his endpoint to large without a meeting. This is how routed deployments die [S21].
+- Four P0 features, ranked above classifier accuracy: tolerance he owns (a `NOT NULL` owner column), the tier stamped on **his own** trace, shadow before enforcement, and a pin effective on the next request.
+- **Worked case:** his thumbs-down rate jumps 1.9 points; grouping his own spans by `camir.tier` shows the regression is on the *large*-tier path. Router exonerated in four minutes, without opening CAMIR ([../product/journeys/day_in_life.md](../product/journeys/day_in_life.md), illustrative).
 
 visual: V07 — Ravi's control path from shadow mode to pin
 
-## 8. The customer sees a cost-quality frontier, not a magic percentage
+## 8. The base case is a 1.4–1.5× cut in GPU cost — and the conservative case is a null result we would publish
 
-- Cost uses amortized GPU-hours per token and declares utilization and the all-in multiplier [S26][S27].
-- Judge harness uses temperature 0, position control, verbosity control and agreement reporting [S33][S34].
-- The fixed-model baseline and oracle ceiling bound every route.
+- Routed cost ratio `r + e − h`, blended by the share of traffic owners allow to route: **1.39× base with no credit for harness repair, 1.49× with it; corridor 1.08×–2.84×** ([../tech/whitepaper.md](../tech/whitepaper.md) §2.6 — every input is a stated assumption).
+- **Conservative × conservative is 1.08×, which does not pay for a control plane.** In that world CAMIR reports a null result.
+- The largest single swing is not the router: routed coverage alone moves the base from 1.33× to 1.58×. That is an organisational variable, which is why slide 7's features rank above classifier accuracy.
+- The multiple is on token-proportional GPU cost. On the all-in line, after the 3–5× engineering multiplier [S27], a 33% cut is 7–11%.
 
 visual: V08 — Self-hosted cost-quality frontier
 
-## 9. The control plane is priced from the inference bill
+## 9. The control plane is priced out of the inference bill, as a share of a saving the customer computes
 
-- Open-core keeps router, harness and frontier builder open.
-- Paid control plane covers tolerance management, savings measurement and routing observability.
-- The $30,000/year ACV is a scenario: $600,000 annual spend × 70% cache-miss traffic × 25% saving assumption × 28% pricing hypothesis.
+- **$30,000 ACV** = $600k spend × 70% post-cache × 25% saving × 28% share (assumption; untested with any buyer). The 25% sits below the whitepaper's own 28–33% base.
+- The customer's engineer computes the counterfactual with open code in their own perimeter — which is what makes share-of-savings credible where a vendor-computed saving is not.
+- **Blended CAC ~$4,200 (14% of ACV); payback ~2.2 months at steady-state margin.** Year-one gross margin is **42%**, not 75% — onboarding is still a service until it is automated ([../financials/unit_economics.md](../financials/unit_economics.md)).
+- Declared fallback: ~5% of spend under management, OpenRouter's revealed take [S17].
 
 visual: V09 — ACV derivation and open-core boundary
 
@@ -93,19 +95,20 @@ visual: V10 — Product 1 ceiling and conditional Product 2 expansion
 
 visual: V11 — Channel dependency and fallback path
 
-## 12. The moat is weak; the measurement history may still compound per deployment
+## 12. Every competitor is paid by the volume it routes, so none can tell a customer not to buy
 
-- The routing mechanism commoditizes into the serving engine [S11].
-- Per-deployment labels, tolerance history and signed attribution may create switching friction, but A6 is untested.
-- The claim is measurement credibility, not algorithmic superiority.
+- **OpenRouter** takes ~5% of the bill it sits on, $160M annualised by Aug 2026 [S17]. **GPT-5** ships routing free, with a vendor-set tolerance — and a documented backlash over degraded complex queries [S20][S21]. **Martian** is reported by one weak source to have neared ~$1.3B [S18]; its revenue is unknown [G3].
+- **The serving engine** is absorbing dispatch [S11] — the real clock. It will not run a customer's ceiling probe, publish judge agreement or issue a disqualification.
+- **The closest comparable is a shutdown:** TensorZero archived after $7.3M and 11,000 stars [S23]. CAMIR's open/paid line is published before release for that reason.
+- The moat is weak and per-deployment: labels, tolerance history and signed attribution may compound (A6, untested). The claim is measurement credibility, not algorithmic superiority.
 
 visual: V12 — Commodity mechanism versus customer-owned records
 
 ## 13. The capstone starts with a falsifiable experiment, not traction
 
-- CAMIR is a pre-traction SJSU CMPE 295A capstone.
-- A13 says test-automation and evaluation-infrastructure background transfers to benchmark engineering; it is an assumption.
-- E1, E2 and E4 decide whether the venture should continue.
+- **Abhishek Darji, Aniket Anil Naik, Tamizh Selvan Manivannan** — an SJSU CMPE 295A capstone team advised by Prof. Vijay Eranti. Pre-traction: no customers, no revenue, no measurement of our own.
+- **Weak on domain, real on measurement:** new to LLM routing, but two years of professional test automation — data-driven harnesses at 1,000+ test cases, CI pipelines, evaluation infrastructure. The hard part of CAMIR is the evaluation, and that is the part we have built before (A13, an assumption until E2 runs).
+- E1 (is there a ceiling), E2 (is part of it the harness) and E4 (does the segment exist) decide in about six weeks whether this should continue.
 
 visual: V13 — Evidence ladder from capstone to customer proof
 

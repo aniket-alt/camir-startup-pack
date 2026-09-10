@@ -1,34 +1,42 @@
 # CAMIR — Founder story
 
-**What this is** — a first-person account of why this team chose benchmark engineering and customer-owned measurement as CAMIR's starting point.
-**Why it exists** — a pre-traction capstone can borrow the voice of a company before it has earned evidence; this story keeps the origin, edge and uncertainty visible so the reader does not confuse technical fluency with traction.
-**How to read it** — read the lived insight, then the claimed edge and its test; attack A13, the transfer from test automation to LLM evaluation infrastructure.
-**Depends on / feeds** — depends on [BRIEF.md](../BRIEF.md), [ASSUMPTIONS.md](../ASSUMPTIONS.md), [research/sources.md](../research/sources.md), [tech/whitepaper.md](../tech/whitepaper.md) and [validation/riskiest_assumptions.md](../validation/riskiest_assumptions.md); feeds [one_pager.md](one_pager.md), [vc_memo.md](vc_memo.md), [mission_vision.md](mission_vision.md) and [README.md](../README.md).
+**What this is** — the first-person founder-market-fit account: the insight, the edge, the weakness stated plainly, and why this team is positioned for the next ten years of this problem. Written to be usable verbatim in applications and introductions.
+**Why it exists** — a pre-traction capstone team writing about an LLM router has two tempting stories, and both fail on contact: "we built a smarter router" is falsified by one citation [S4], and "we have deep domain experience" is not true. Without an honest version, the pitch borrows a credibility the team has not earned and loses the one it has — that the hard part of CAMIR is evaluation, and evaluation is what this team has actually done before.
+**How to read it** — the second section is the claim; the third is where a skeptic should push, because it states the weakness first. The edge rests on assumption A13, and E2 is the experiment that tests it.
+**Depends on / feeds** — depends on [../BRIEF.md](../BRIEF.md) §Founder edge and §Wedge, [../ASSUMPTIONS.md](../ASSUMPTIONS.md) A13, [../tech/whitepaper.md](../tech/whitepaper.md), [../validation/experiment_board.md](../validation/experiment_board.md) E2; feeds [one_pager.md](one_pager.md), [vc_memo.md](vc_memo.md), [pitch_deck.md](pitch_deck.md) slide 13 and [mission_vision.md](mission_vision.md).
 
-## The insight
+---
 
-We started with a practical irritation: a platform team can run several open-weight models, know that requests vary in difficulty, and still have no defensible answer to the question, “What did this request cost, and what quality did we give up?” The default response is to pick one tier for an endpoint. The alternative is often a routing demo that reports a percentage without exposing the harness, utilization or the engineer who carries the risk.
+## What we noticed
 
-The research made the tempting version of the story impossible. The Routing Plateau found 21 routing methods converging in a narrow band far below the oracle [S4]. The right claim was not that our router would be smarter. It was that the customer's frontier should be measurable on the customer's pool, and that some apparent unsolvability may be evaluation artifact [S5].
+Anyone who has maintained a large automated test suite learns one lesson early and relearns it constantly: **a broken harness produces failures that look exactly like product bugs.** A timeout set too tight, a parser that expects one output format, an assertion that rewards the wrong thing — each one shows up in the dashboard as "the system cannot do this," and each one is fixed in the harness, not the system.
 
-## Why this team is attempting it
+When we started reading the LLM routing literature, we found the same failure at scale. The 2026 audit of routing evaluation found truncation under fixed generation budgets in 65% of MMLU and 57% of MedQA cases, 5–12% parse failures on MMLU, and judges that reward verbosity over correctness, across 206,000 query-model pairs [S5]. Much of what a team would measure as "the small model cannot handle this request" is the harness.
 
-This is a pre-traction SJSU CMPE 295A capstone, not a story about prior customers or famous credentials. Our claimed edge is narrower: test-automation and evaluation-infrastructure background may transfer to benchmark engineering, where truncation, parse failure, judge disagreement and reproducibility are first-order engineering problems. That transfer is assumption A13. It becomes credible only if E1 and E2 reproduce a useful artifact decomposition on a self-hosted pool.
+At almost the same time, the field's own benchmark of 21 routing methods found them converged in a narrow band far below the oracle, with the best remedies worth up to 2.13 percentage points [S4]. The routing *decision* is near its ceiling. The routing *measurement* is not. **That asymmetry is the company.** It is why we do not claim a better router, and why CAMIR's first output is a measured ceiling — including, sometimes, the recommendation not to deploy.
 
-The work is attractive because a negative result is valuable. If the oracle ceiling is too low, CAMIR should issue a disqualification report. If the cost axis collapses under idle GPU utilization, the model must say so. If a consuming engineer pins large, the record should show that the safety control worked and why the route was rejected.
+## Why us
 
-## What I would refuse to claim
+We are Abhishek Darji, Aniket Anil Naik and Tamizh Selvan Manivannan, building CAMIR as an SJSU CMPE 295A capstone advised by Prof. Vijay Eranti.
 
-I would not claim router superiority. I would not call a hosted benchmark a CAMIR measurement. I would not call an illustrative $30,000 ACV a contract. I would not invent traction, logos, advisors, testimonials or credentials. I would keep the core loop visible: **Classify → Dispatch → Judge → Attribute → Recalibrate**.
+Our edge is narrow and specific. The team brings two years of professional test automation and validation work: data-driven test harnesses running more than 1,000 test cases, CI pipelines, and systematic evaluation infrastructure. The hard part of CAMIR is not the router. It is building a mixed-difficulty benchmark, judging correctness consistently enough that two judges agree, and producing a cost-quality frontier that survives someone hostile re-running it. **That is benchmark engineering, and it is the part of this problem we have done before.**
 
-## The work ahead
+## What we are not
 
-The first proof is not a polished dashboard. It is an artifact-controlled oracle ceiling, a pool-specific GPU-hour cost derivation and a shadow-mode report that Ravi can inspect. The first commercial proof is not enthusiasm; it is a buyer who accepts the eligible-savings definition after independently reproducing the counterfactual.
+We came to LLM routing recently. We have no commercial work in this space, no prior product here, no customers, no revenue and no measurement of our own. Whether our background transfers is assumption A13 in our own register, and we treat it as one: if E2 — the same generations run through a naive and an artifact-controlled harness — shows less than a two-point difference on a realistic pool, then our thesis is true only of sloppy harnesses and we are an ordinary router team in a plateaued field. We have written that down in advance so we cannot reinterpret it afterwards.
 
-That is why CAMIR starts as an open harness and a measured frontier. The router may become a serving-engine feature. The measurement record still has to be true.
+We will not claim router superiority. We will not quote a hosted benchmark as a CAMIR result. We will not call the $30,000 ACV a contract. And we will not invent traction, logos, advisors or testimonials — there are none.
+
+## Why this team for the next ten years
+
+The founding brief puts the ten-year view in one line: **routing becomes a default layer in the inference stack — nobody sends every request to one model, the same way nobody serves every static asset from origin.**
+
+If that happens, the router itself is free; the serving engines are already absorbing it [S11]. What does not become free is knowing whether a routing decision was right on *your* traffic, and knowing again after every model upgrade, every cache change, every quantisation choice. The frontier is a dated measurement that decays each time the pool moves [S29]. In test engineering this is simply the regression suite — the thing that runs on every change, that nobody wants to own, and that silently rots when nobody does. **The inference stack is about to need a regression suite for cost and quality, and building regression suites is our trade.**
+
+That is also why a negative result does not frighten us. If the oracle ceiling on real self-hosted traffic is too low, the right output is a published null result and a disqualification report. A team that already knows how to be told its tests were wrong is well suited to a company whose product sometimes tells the customer to walk away.
 
 ## Recommended next 3
 
-1. Run E1/E2 and publish the result, including a null result if the ceiling does not support routing.
-2. Ask the capstone advisor and practitioner network for past-behavior interviews about self-hosted inference and budget ownership.
-3. Test whether benchmark-engineering discipline transfers into repeatable customer-perimeter evaluation.
+1. **Run E1 and E2 before telling this story to anyone who can fund it.** The story's central claim is testable in two weeks on a public corpus; telling it with the result attached is a different conversation from telling it as a plan.
+2. **Pre-register the E2 protocol publicly** — both harness arms, the judge set, and the two-point fail line. It is the single artifact that turns "we are good at evaluation" from an assertion into something a stranger can check.
+3. **Use this story unchanged in the capstone report and in investor introductions.** One version of the founder narrative, with the weakness in it, is worth more than two versions tuned to different audiences.
